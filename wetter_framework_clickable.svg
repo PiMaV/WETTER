@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="560" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">WETTER Framework Ecosystem</title>
+  <desc id="desc">Clickable WETTER framework pipeline with placeholder icon slots for DAMPF, KEIM, WOLKE and BLITZ.</desc>
+
+  <style>
+    .bg { fill: #0d0f12; }
+    .grid { stroke: #1b1f25; stroke-width: 1; opacity: 0.55; }
+    .title { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; }
+    .subtitle { fill: #b7bec9; font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+    .ocean { fill: #10151b; stroke: #2d3742; stroke-width: 2; }
+    .ocean-text { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; text-anchor: middle; }
+    .ocean-sub { fill: #9aa5b1; font-family: Arial, Helvetica, sans-serif; font-size: 14px; text-anchor: middle; }
+    .card { fill: #12161c; stroke: #2a313a; stroke-width: 2; }
+    .card:hover { stroke: #68c2ff; stroke-width: 3; }
+    .slot { fill: #000000; stroke: #303844; stroke-width: 1.5; }
+    .mod { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; text-anchor: middle; }
+    .acro { fill: #a6b1bd; font-family: Arial, Helvetica, sans-serif; font-size: 13px; text-anchor: middle; }
+    .desc-txt { fill: #c5ccd4; font-family: Arial, Helvetica, sans-serif; font-size: 13px; text-anchor: middle; }
+    .placeholder { fill: #697586; font-family: Arial, Helvetica, sans-serif; font-size: 12px; text-anchor: middle; }
+    .arrow { stroke: #7d8a97; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    .feedback { stroke: #4e5a67; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead2); stroke-dasharray: 8 7; }
+    .feedback-label { fill: #8995a3; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+    .clickhint { fill: #6fc8ff; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#7d8a97"/>
+    </marker>
+    <marker id="arrowhead2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#4e5a67"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="560"/>
+
+  <!-- grid -->
+  <g>
+    <line class="grid" x1="0" y1="80" x2="1600" y2="80"/>
+    <line class="grid" x1="0" y1="160" x2="1600" y2="160"/>
+    <line class="grid" x1="0" y1="240" x2="1600" y2="240"/>
+    <line class="grid" x1="0" y1="320" x2="1600" y2="320"/>
+    <line class="grid" x1="0" y1="400" x2="1600" y2="400"/>
+    <line class="grid" x1="0" y1="480" x2="1600" y2="480"/>
+
+    <line class="grid" x1="100" y1="0" x2="100" y2="560"/>
+    <line class="grid" x1="200" y1="0" x2="200" y2="560"/>
+    <line class="grid" x1="300" y1="0" x2="300" y2="560"/>
+    <line class="grid" x1="400" y1="0" x2="400" y2="560"/>
+    <line class="grid" x1="500" y1="0" x2="500" y2="560"/>
+    <line class="grid" x1="600" y1="0" x2="600" y2="560"/>
+    <line class="grid" x1="700" y1="0" x2="700" y2="560"/>
+    <line class="grid" x1="800" y1="0" x2="800" y2="560"/>
+    <line class="grid" x1="900" y1="0" x2="900" y2="560"/>
+    <line class="grid" x1="1000" y1="0" x2="1000" y2="560"/>
+    <line class="grid" x1="1100" y1="0" x2="1100" y2="560"/>
+    <line class="grid" x1="1200" y1="0" x2="1200" y2="560"/>
+    <line class="grid" x1="1300" y1="0" x2="1300" y2="560"/>
+    <line class="grid" x1="1400" y1="0" x2="1400" y2="560"/>
+    <line class="grid" x1="1500" y1="0" x2="1500" y2="560"/>
+  </g>
+
+  <text class="title" x="120" y="56">WETTER Framework Ecosystem</text>
+  <text class="subtitle" x="120" y="88">Raw image and matrix data → indexing → analysis → web exploration → high-performance inspection</text>
+
+  <!-- raw data ocean -->
+  <g>
+    <rect class="ocean" x="85" y="170" width="210" height="145" rx="22"/>
+    <text class="ocean-text" x="190" y="230">RAW DATA OCEAN</text>
+    <text class="ocean-sub" x="190" y="258">images · matrices · folder structure</text>
+    <text class="ocean-sub" x="190" y="280">experiments · measurements</text>
+  </g>
+
+  <!-- arrows -->
+  <path class="arrow" d="M 295 242 L 360 242"/>
+  <path class="arrow" d="M 570 242 L 635 242"/>
+  <path class="arrow" d="M 845 242 L 910 242"/>
+  <path class="arrow" d="M 1120 242 L 1185 242"/>
+
+  <!-- feedback loop -->
+  <path class="feedback" d="M 1395 320 C 1465 320, 1490 360, 1490 410 C 1490 470, 1220 505, 860 505 C 520 505, 360 470, 360 410 C 360 370, 390 344, 430 330"/>
+  <text class="feedback-label" x="1250" y="355">iterative exploration / feedback loop</text>
+
+  <!-- cards -->
+  <a href="https://github.com/PiMaV/DAMPF" target="_blank">
+    <g>
+      <rect class="card" x="360" y="120" width="210" height="245" rx="22"/>
+      <rect class="slot" x="415" y="145" width="100" height="100" rx="16"/>
+      <text class="placeholder" x="465" y="199">DROP ICON</text>
+      <text class="mod" x="465" y="285">DAMPF</text>
+      <text class="acro" x="465" y="309">Data Aggregation &amp; Modular Processing Framework</text>
+      <text class="desc-txt" x="465" y="336">Filename-semantic indexing</text>
+      <text class="desc-txt" x="465" y="355">WETTER SQLite database</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/PiMaV/KEIM" target="_blank">
+    <g>
+      <rect class="card" x="635" y="120" width="210" height="245" rx="22"/>
+      <rect class="slot" x="690" y="145" width="100" height="100" rx="16"/>
+      <text class="placeholder" x="740" y="199">DROP ICON</text>
+      <text class="mod" x="740" y="285">KEIM</text>
+      <text class="acro" x="740" y="309">Knowledge Extraction &amp; Indexing Module</text>
+      <text class="desc-txt" x="740" y="336">Scalar statistics</text>
+      <text class="desc-txt" x="740" y="355">Data enrichment / extraction</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/PiMaV/WOLKE" target="_blank">
+    <g>
+      <rect class="card" x="910" y="120" width="210" height="245" rx="22"/>
+      <rect class="slot" x="965" y="145" width="100" height="100" rx="16"/>
+      <text class="placeholder" x="1015" y="199">DROP ICON</text>
+      <text class="mod" x="1015" y="285">WOLKE</text>
+      <text class="acro" x="1015" y="309">Web-Oriented Layout for Knowledge Exploration</text>
+      <text class="desc-txt" x="1015" y="336">Interactive web exploration</text>
+      <text class="desc-txt" x="1015" y="355">Direct HTTP integration with BLITZ</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/PiMaV/BLITZ" target="_blank">
+    <g>
+      <rect class="card" x="1185" y="120" width="210" height="245" rx="22"/>
+      <rect class="slot" x="1240" y="145" width="100" height="100" rx="16"/>
+      <text class="placeholder" x="1290" y="199">DROP ICON</text>
+      <text class="mod" x="1290" y="285">BLITZ</text>
+      <text class="acro" x="1290" y="309">Bulk Loading &amp; Interactive Time-series Zonal Analysis</text>
+      <text class="desc-txt" x="1290" y="336">Rapid image inspection</text>
+      <text class="desc-txt" x="1290" y="355">Synchronized with WOLKE</text>
+    </g>
+  </a>
+
+  <text class="clickhint" x="120" y="535">Each module card is clickable and can link directly to its GitHub repository from the README.</text>
+</svg>
