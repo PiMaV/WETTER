@@ -10,3 +10,5 @@ Thumbs.db
 # Logs / temp
 *.log
 .cache
+
+/OLD_shit_Backup
