@@ -28,3 +28,13 @@ Raw Data → DAMPF → KEIM → WOLKE → BLITZ
 ## Background
 
 * DPG Symposium: `docs/BLITZ_WOLKE_DPG25V2_Compact.pdf`
+
+## Author
+
+Philipp Mattern  
+M.E.S.S. – Mattern Engineering & Software Solutions
+
+## Research context
+
+Parts of this framework evolved during scientific work and collaborations
+at the [Leibniz Institute for Plasma Science and Technology (INP)](https://www.inp-greifswald.de).
