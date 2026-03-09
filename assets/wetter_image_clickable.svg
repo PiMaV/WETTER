@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">WETTER - THE DATA PROCESSING PIPELINE</title>
+  <desc id="desc">Clickable pipeline: DAMPF, KEIM, WOLKE, BLITZ.</desc>
+
+<style>
+  .hotspot { 
+    fill: rgba(255,255,255,0.0); 
+    stroke: rgba(255,255,255,0.0); 
+    cursor: pointer; 
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* DAMPF - Cyan Glow */
+  .hs-dampf:hover { 
+    fill: rgba(0, 255, 242, 0.15); 
+    stroke: rgba(0, 255, 242, 0.9); 
+    stroke-width: 8; 
+  }
+
+  /* KEIM - Lime Glow */
+  .hs-keim:hover { 
+    fill: rgba(156, 204, 101, 0.15); 
+    stroke: rgba(156, 204, 101, 0.9); 
+    stroke-width: 8; 
+  }
+
+  /* WOLKE - White/Silver Glow */
+  .hs-wolke:hover { 
+    fill: rgba(255, 255, 255, 0.2); 
+    stroke: rgba(255, 255, 255, 1.0); 
+    stroke-width: 8; 
+  }
+
+  /* BLITZ - Red/Orange Glow */
+  .hs-blitz:hover { 
+    fill: rgba(255, 50, 50, 0.2); 
+    stroke: rgba(255, 50, 50, 0.9); 
+    stroke-width: 8; 
+  }
+</style>
+
+  <!-- Background: concept image -->
+  <image
+    href="WETTER_Framework_1024.png"
+    x="0"
+    y="0"
+    width="1024"
+    height="1024"
+    preserveAspectRatio="xMidYMid slice"
+  />
+
+<a href="https://github.com/PiMaV/DAMPF" target="_blank" aria-label="DAMPF - Indexing &amp; Abstraction">
+  <rect class="hotspot hs-dampf" x="66" y="212" width="174" height="330" rx="12"/>
+</a>
+
+<a href="https://github.com/PiMaV/KEIM" target="_blank" aria-label="KEIM - Pattern Recognition &amp; Structure Formation">
+  <rect class="hotspot hs-keim" x="304" y="212" width="203" height="343" rx="12"/>
+</a>
+
+<a href="https://github.com/PiMaV/WOLKE" target="_blank" aria-label="WOLKE - Knowledge Base &amp; Aggregation">
+  <rect class="hotspot hs-wolke" x="569" y="120" width="205" height="363" rx="12"/>
+</a>
+
+<a href="https://github.com/PiMaV/BLITZ" target="_blank" aria-label="BLITZ - Insight &amp; Knowledge">
+  <rect class="hotspot hs-blitz" x="830" y="207" width="161" height="300" rx="12"/>
+</a>
+
+</svg>

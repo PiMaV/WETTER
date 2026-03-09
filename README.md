@@ -1,10 +1,8 @@
-# WETTER
+# WETTER Framework Ecosystem
 
 **WETTER** is a modular framework ecosystem for structured processing, exploration, and analysis of large experimental imaging datasets.
 
-<p align="center">
-  <img src="assets/WETTER_Concept.png" alt="WETTER framework overview" width="100%">
-</p>
+![WETTER Framework](assets/wetter_image_clickable.svg)
 
 ---
 
