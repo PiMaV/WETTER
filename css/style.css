@@ -421,19 +421,19 @@ a {
 }
 
 .hs-dampf {
-  border: 2px solid var(--dampf);
+  border: 1px solid var(--dampf);
 }
 
 .hs-keim {
-  border: 2px solid var(--keim);
+  border: 1px solid var(--keim);
 }
 
 .hs-wolke {
-  border: 2px solid var(--wolke);
+  border: 1px solid var(--wolke);
 }
 
 .hs-blitz {
-  border: 2px solid var(--blitz);
+  border: 1px solid var(--blitz);
 }
 
 /* Orbitron: hotspot label only */
