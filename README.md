@@ -23,6 +23,17 @@ Raw Data → DAMPF → KEIM → WOLKE → BLITZ
 | **WOLKE** | Web exploration layer — reads WETTER DB + images, integrates with BLITZ | [PiMaV/WOLKE](https://github.com/PiMaV/WOLKE) |
 | **BLITZ** | Bulk loading & interactive analysis — fast image inspection, syncs with WOLKE | [PiMaV/BLITZ](https://github.com/PiMaV/BLITZ) |
 
+## Shared resources (suite)
+
+Tool names stay uppercase (`BLITZ`, …). Shared resource **folders** stay
+lowercase locally; GitHub repo names carry the `WETTER-` prefix so they stay
+unambiguous under PiMaV:
+
+| Local folder | GitHub repo (planned) | Role |
+|--------------|----------------------|------|
+| `converters/` | `PiMaV/WETTER-converters` | Format bridges → `.npy` |
+| `datasets/` | `PiMaV/WETTER-datasets` | Sample / reference datasets |
+
 ---
 
 ## Background
@@ -32,7 +43,11 @@ Raw Data → DAMPF → KEIM → WOLKE → BLITZ
 ## Author
 
 Philipp Mattern  
-M.E.S.S. – Mattern Engineering & Software Solutions
+M.E.S.S. – Mattern Engineering & Software Solutions  
+
+Linux packaging / Flathub app IDs use the M.E.S.S. namespace `engineering.mess.*`
+(first app: [`engineering.mess.Blitz`](https://github.com/PiMaV/BLITZ/tree/main/flatpak)).
+GitHub repos may stay under the PiMaV nickname; do not use CodeSchmiedeHGW.
 
 ## Research context
 
