@@ -110,7 +110,8 @@ larger BLITZ/`ImageData` redesign — out of scope until A–C prove value.
 | **KEIM** | Stats on sparse vs dense; avoid forcing full materialization |
 | **WOLKE** | Delivery contract: compressed or sparse payloads to viewers |
 | **BLITZ** | Load dialogs, RAM caps; future unpack / thr; keep Flatpak free of EVT SDK |
-| **EVT Sidecar** | Event-native sparse → optional dense bin; first place to try **A** |
+| Event reader (`EVT/`) | Event-native sparse → optional dense bin; first place to try **A** |
+| **FUNKE** (later) | Live / multi-format streamer into BLITZ — see [`funke.md`](funke.md) |
 
 EVT is one **instance** of the general rule, not a one-off format problem.
 
