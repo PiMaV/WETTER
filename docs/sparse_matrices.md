@@ -109,11 +109,11 @@ flowchart TB
 
 ### A — Cheap: compress dense (lossless)
 
-gzip on uint8 or float `.npy` via HTTP `Content-Encoding`. **WOLKE** still
-compresses when the client sends `Accept-Encoding: gzip`. **Event reader** does
-**not**: gzip is opt-in (`?gzip=1`) because the usual path is localhost (zip then
-unzip is wasted CPU). BLITZ also sends `Accept-Encoding: identity` for
-loopback addresses. Clients without the gzip header always get raw `.npy`.
+gzip on uint8 or float `.npy` via HTTP `Content-Encoding`. **Event reader**
+gzip is opt-in (`?gzip=1` / checkbox, default off) because the usual path is
+localhost (zip then unzip is wasted CPU). **WOLKE** does not gzip. BLITZ sends
+`Accept-Encoding: identity` for loopback. Clients without the gzip header always
+get raw `.npy`.
 
 - **Work:** small (servers + downloaders).
 - **Gain:** often large when occupancy is low (EVT stacks, dark frames).
@@ -153,10 +153,9 @@ larger BLITZ/`ImageData` redesign — out of scope until A–C prove value.
 |------|--------------------|
 | **DAMPF** | Could record occupancy / dtype / suggested thr in DB metadata |
 | **KEIM** | Stats on sparse vs dense; avoid forcing full materialization |
-| **WOLKE** | Delivery contract: gzip `.npy` to viewers (`Content-Encoding`) |
+| **WOLKE** | Delivery contract: dense `.npy` to viewers (no gzip) |
 | **BLITZ** | Load File-tab Floor \|v\|; RAM caps; keep Flatpak free of EVT SDK |
-| Event reader (`EVT/`) | Event-native sparse → optional dense bin; gzip on HTTP |
-| **FUNKE** (later) | Live / multi-format streamer into BLITZ — see [`funke.md`](funke.md) |
+| Event reader (`EVT/`) | Event-native sparse → optional dense bin; opt-in gzip on HTTP |
 
 EVT is one **instance** of the general rule, not a one-off format problem.
 
