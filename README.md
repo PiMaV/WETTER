@@ -38,18 +38,21 @@ unambiguous under PiMaV:
 
 ## Background
 
-* DPG Symposium: `docs/BLITZ_WOLKE_DPG25V2_Compact.pdf`
+* DPG Symposium: [`docs/BLITZ_WOLKE_DPG25V2_Compact.pdf`](docs/BLITZ_WOLKE_DPG25V2_Compact.pdf)
 
 ## Author
 
 Philipp Mattern  
 M.E.S.S. – Mattern Engineering & Software Solutions  
 
-Linux packaging / Flathub app IDs use the M.E.S.S. namespace `engineering.mess.*`
-(first app: [`engineering.mess.Blitz`](https://github.com/PiMaV/BLITZ/tree/main/flatpak)).
-GitHub repos may stay under the PiMaV nickname; do not use CodeSchmiedeHGW.
-
 ## Research context
 
 Parts of this framework evolved during scientific work and collaborations
 at the [Leibniz Institute for Plasma Science and Technology (INP)](https://www.inp-greifswald.de).
+
+## Linux packaging 
+Flathub app not yet approved by Mods.
+Prepared for:
+IDs use the M.E.S.S. namespace `engineering.mess.*`
+(first app: [`engineering.mess.BLITZ`](https://github.com/PiMaV/BLITZ/tree/main/flatpak)).
+GitHub repos may stay under the PiMaV nickname
