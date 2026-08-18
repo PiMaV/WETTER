@@ -10,7 +10,7 @@ In **allen** WETTER-Repos denselben kurzen Header oben in der README:
 - Hinweis, welches Repo das hier ist (Tool vs. Shared Resource)
 - Link zurück zu WETTER / M.E.S.S.
 
-Repos: `WETTER`, `DAMPF`, `KEIM`, `WOLKE`, `BLITZ`, `WETTER-converters`, `WETTER-datasets`.
+Repos: `WETTER` (landing + docs only), `DAMPF`, `KEIM`, `WOLKE`, `BLITZ`, `WETTER-converters`. `datasets/` is local-only (not a clone).
 
 Noch nicht umsetzen — erst Naming/Repos stehen, dann Header einmal definieren und überall kopieren.
 

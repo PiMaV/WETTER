@@ -25,7 +25,7 @@ occupy the same `nbytes` as values).
 ```mermaid
 flowchart LR
   subgraph produce [Producer]
-    evt["EVT bin then uint8"]
+    evt["EVT bin then npy float32 default"]
     wolke["WOLKE np.save"]
   end
   subgraph wire [HTTP]
@@ -48,8 +48,9 @@ flowchart LR
 - **C** — File-tab opt-in `floor_abs` after `np.load`, before 8-bit/resize.
   Lossy. Default off. Network ingest (`WebDataLoader`) uses the same File-tab
   params. Does **not** run on WOLKE before send (no science UI there).
-- EVT maps counts to uint8 (`stack_for_network`) before HTTP — **raw counts**
-  by default (clip 255), optional log1p stretch.
+- EVT maps counts for HTTP (`encode_stack_for_send`) — **float32 counts** by
+  default, optional 8-bit / normalize / grayscale / log stretch like the BLITZ
+  File tab.
   That is display quantization, not C. The resulting exact zeros gzip well.
 
 ---
@@ -115,7 +116,7 @@ unzip is wasted CPU). BLITZ also sends `Accept-Encoding: identity` for
 loopback addresses. Clients without the gzip header always get raw `.npy`.
 
 - **Work:** small (servers + downloaders).
-- **Gain:** often large when occupancy is low (EVT uint8 stacks, dark frames).
+- **Gain:** often large when occupancy is low (EVT stacks, dark frames).
 - **Signal:** unchanged.
 
 ### B — Medium: sparse on the wire, dense in the viewer
