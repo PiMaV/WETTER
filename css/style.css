@@ -174,14 +174,29 @@ a {
   display: block;
 }
 
-/* Orbitron: hero headline only */
+/* Orbitron: hero headline and acronym initials */
 .hero h1 {
-  margin: 0 0 18px;
+  margin: 0 0 10px;
   max-width: 10ch;
   font-family: Orbitron, sans-serif;
   font-size: clamp(2.8rem, 6vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: 0.08em;
+}
+
+.hero .brand-expand {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.hero .brand-expand .acronym-init {
+  font-family: Orbitron, sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1.12em;
+  letter-spacing: 0.02em;
 }
 
 .hero p.lead {
@@ -358,7 +373,7 @@ a {
 
 .pipeline-foot {
   margin-top: 24px;
-  max-width: 640px;
+  max-width: 720px;
 }
 
 .pipeline-desc {
@@ -590,6 +605,13 @@ a {
 
 .footer a:hover {
   color: var(--text);
+}
+
+@media (min-width: 1280px) {
+  .hero .brand-expand {
+    white-space: nowrap;
+    font-size: 1.22rem;
+  }
 }
 
 @media (max-width: 1024px) {

@@ -1,6 +1,6 @@
-# WETTER Framework
+# WETTER — Workspace and Experimental Toolkits for Data Transformation, Exploration and Research
 
-**WETTER** is a modular framework for structured processing, exploration, and analysis of large experimental imaging datasets.
+**WETTER** is a modular suite for structured processing, exploration, and analysis of large experimental imaging datasets.
 
 **Live overview and pipeline:** [wetter.mess.engineering](https://wetter.mess.engineering)
 
