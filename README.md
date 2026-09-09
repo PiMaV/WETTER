@@ -34,6 +34,11 @@ unambiguous under PiMaV:
 | `converters/` | `PiMaV/WETTER-converters` | Format bridges → `.npy` |
 | `datasets/` | `PiMaV/WETTER-datasets` | Sample / reference datasets |
 
+**DONNER** is a parallel 3D/XR explorer (not a pipeline stage). Live viewers
+(BLITZ, DONNER) and sidecars share one **hub-and-spoke** interchange — see
+[`docs/interoperability.md`](docs/interoperability.md) and the
+[WETTER Viewer Contract](../WOLKE/WETTER_Viewer_Contract.md).
+
 ---
 
 ## Background

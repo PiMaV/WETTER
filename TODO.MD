@@ -3,6 +3,26 @@
 Parking lot for suite-wide leftovers. Tool-specific work stays in that tool’s
 repo. This file is **not** a schedule.
 
+## Parked (2026-09) — Viewer Contract follow-ups
+
+Shipped for now: hub-and-spoke dogma
+([`docs/interoperability.md`](docs/interoperability.md)), EVT playhead ↔
+`viewer_index` with BLITZ, DONNER client index seek/emit in code (Streamer UI
+still hidden).
+
+**Do later (not peer-mesh):**
+
+1. **DONNER Streamer UI (local only)** — show Connect under Source for LAN /
+   sidecar QA; keep hidden on GitHub Pages. Load NumPy / drop is already in.
+   Unlocks EVT + BLITZ + DONNER dual-scrub (2D + 3D). Owner: `DONNER/`.
+2. **Open-in / ROI handoffs** — one-shot “Open in DONNER” / “analyze in BLITZ”
+   or space-time ROI as **Viewer Contract extensions** via the hub (or deep
+   link). No Viewer↔Viewer socket, no shared widgets. Owners: contract in
+   `WOLKE/`, clients in `DONNER/` + `BLITZ/`.
+3. **WOLKE ↔ DONNER parity** — packed `__selection__.npy` multi-row + table
+   sync when exploring from WOLKE (not required for EVT dual-view). Owners:
+   `WOLKE/` + `DONNER/`.
+
 ## Parked (2026-08)
 
 - **WOLKE / KEIM:** local trees are linked to GitHub but have drifted since
