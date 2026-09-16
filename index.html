@@ -9,7 +9,7 @@
   <meta name="description"
     content="WETTER — Workspace and Experimental Toolkits for Data Transformation, Exploration and Research. A modular suite for scientific imaging, dataset exploration, and interactive analysis." />
   <meta name="keywords"
-    content="WETTER, Workspace and Experimental Toolkits, data transformation, scientific data processing, scientific imaging, dataset exploration, image analysis, BLITZ, DAMPF, KEIM, WOLKE" />
+    content="WETTER, Workspace and Experimental Toolkits, data transformation, scientific data processing, scientific imaging, dataset exploration, image analysis, BLITZ, DONNER, DAMPF, KEIM, WOLKE" />
   <meta name="author" content="Philipp Mattern" />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0b0f14" />
@@ -61,47 +61,207 @@
           <p class="brand-expand"><span class="acronym-init">W</span>orkspace and <span class="acronym-init">E</span>xperimental <span class="acronym-init">T</span>oolkits for Data <span class="acronym-init">T</span>ransformation, <span class="acronym-init">E</span>xploration and <span class="acronym-init">R</span>esearch</p>
 
           <p class="lead">
-            A framework for image data:<br> from raw files and folders to indexed knowledge to interactive inspection.
+            The data can go straight in — or take the route it needs.
           </p>
-          <div class="hero-pipeline-row">
-            <p class="lead pipeline-catch">
-              Raw Data → <a href="https://github.com/PiMaV/DAMPF" target="_blank" rel="noopener noreferrer">DAMPF</a> → <a href="https://github.com/PiMaV/KEIM" target="_blank" rel="noopener noreferrer">KEIM</a> → <a href="https://github.com/PiMaV/WOLKE" target="_blank" rel="noopener noreferrer">WOLKE</a> → <a href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer">BLITZ</a>
-            </p>
-            <p class="hero-talk">
-              <a href="docs/BLITZ_WOLKE_DPG25V2_Compact.pdf" target="_blank" rel="noopener noreferrer">DPG Symposium talk (PDF)</a>
-            </p>
-          </div>
+          <p class="hero-talk">
+            <a href="docs/BLITZ_WOLKE_DPG25V2_Compact.pdf" target="_blank" rel="noopener noreferrer">DPG 2025 early conceptual Symposium Talk (PDF)</a>
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="pipeline">
-      <div class="wrap">
+    <section class="section ecosystem" id="ecosystem" aria-label="WETTER modular data ecosystem">
+      <div class="wrap eco-wrap">
+        <div class="eco-stage" data-eco-stage>
+          <svg class="eco-edges" data-eco-edges aria-hidden="true"></svg>
 
-        <div class="pipeline-shell">
-          <div class="pipeline-stage" aria-label="WETTER pipeline overview">
-            <img src="assets/WETTER_Framework_1024.png" alt="WETTER image-data pipeline: files and folders through DAMPF, KEIM, WOLKE, and BLITZ" />
+          <!--
+            Desktop layout: absolute % on the stage.
+            Tune --x / --y / --w here (or in css/style.css .eco-pos-*).
+            Ocean docks rise under each block’s horizontal center.
+          -->
 
-            <a class="hotspot hs-dampf" data-label="DAMPF" href="https://github.com/PiMaV/DAMPF" target="_blank"
-              rel="noopener noreferrer" aria-label="Open DAMPF on GitHub"
-              style="left:6.45%; top:20.70%; width:16.99%; height:32.23%;"></a>
+          <div class="eco-node eco-node--source eco-place eco-pos-ocean" data-node="raw-data-ocean" tabindex="0"
+            style="--x: 3%; --y: 70%; --w: 94%;">
+            <div class="eco-ocean-shots">
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Atmospheric_IR_data.png" alt="">
+                </div>
+                <figcaption>Atmospheric IR</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Farfield_Microscopic_SLS_Print.png" alt="">
+                </div>
+                <figcaption>Microscopy</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Geodata_Drone_footage.JPG" alt="">
+                </div>
+                <figcaption>Aerial / geodata</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Sky_Dome_cam.jpg" alt="">
+                </div>
+                <figcaption>All-sky</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Plasmadischarge_ICCD.png" alt="">
+                </div>
+                <figcaption>ICCD</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Plasmadischarge_sCMOS.jpg" alt="">
+                </div>
+                <figcaption>sCMOS</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/Acoustic_Spectrum.png" alt="">
+                </div>
+                <figcaption>Acoustic</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-tile--empty">
+                <div class="eco-ocean-shot" aria-hidden="true"></div>
+                <figcaption>Event camera</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-tile--empty">
+                <div class="eco-ocean-shot" aria-hidden="true"></div>
+                <figcaption>Tables &amp; arrays</figcaption>
+              </figure>
+            </div>
+            <div class="eco-copy">
+              <strong>Raw Data Ocean</strong>
+              <span>Scientific images &amp; camera techniques — plus JPEG/TIFF, NumPy, MATLAB, ASCII, and more</span>
+            </div>
+          </div>
 
-            <a class="hotspot hs-keim" data-label="KEIM" href="https://github.com/PiMaV/KEIM" target="_blank"
-              rel="noopener noreferrer" aria-label="Open KEIM on GitHub"
-              style="left:29.69%; top:20.70%; width:19.82%; height:33.50%;"></a>
+          <div class="eco-stack eco-group eco-place eco-pos-curated" data-node="curated" tabindex="0"
+            style="--x: 3%; --y: 6%; --w: 15%;"
+            aria-label="Curated route — DAMPF, KEIM, WOLKE">
+            <div class="eco-group-head">
+              <strong>Curated route</strong>
+              <span>Build a browsable SQL image database, then filter into the viewers</span>
+            </div>
+            <div class="eco-group-body">
+              <a class="eco-node eco-node--branded eco-node--md eco-accent-wolke" data-node="wolke"
+                data-hover-node="curated"
+                href="https://github.com/PiMaV/WOLKE" target="_blank" rel="noopener noreferrer"
+                aria-label="Open WOLKE on GitHub">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-meta">
+                  <img class="eco-icon" src="assets/icons/wolke_256.png" width="26" height="26" alt="">
+                  <div class="eco-copy">
+                    <strong>WOLKE</strong>
+                    <span>Filter &amp; select</span>
+                  </div>
+                </div>
+              </a>
 
-            <a class="hotspot hs-wolke" data-label="WOLKE" href="https://github.com/PiMaV/WOLKE" target="_blank"
-              rel="noopener noreferrer" aria-label="Open WOLKE on GitHub"
-              style="left:55.57%; top:11.72%; width:20.02%; height:35.45%;"></a>
+              <a class="eco-node eco-node--branded eco-node--sm eco-accent-keim" data-node="keim"
+                data-hover-node="curated"
+                href="https://github.com/PiMaV/KEIM" target="_blank" rel="noopener noreferrer"
+                aria-label="Open KEIM on GitHub">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-meta">
+                  <img class="eco-icon" src="assets/icons/keim_256.png" width="22" height="22" alt="">
+                  <div class="eco-copy">
+                    <strong>KEIM</strong>
+                    <span>Index &amp; enrich</span>
+                  </div>
+                </div>
+              </a>
 
-            <a class="hotspot hs-blitz" data-label="BLITZ" href="https://github.com/PiMaV/BLITZ" target="_blank"
-              rel="noopener noreferrer" aria-label="Open BLITZ on GitHub"
-              style="left:81.05%; top:20.21%; width:15.72%; height:29.30%;"></a>
+              <a class="eco-node eco-node--branded eco-node--sm eco-accent-dampf" data-node="dampf"
+                data-hover-node="curated"
+                href="https://github.com/PiMaV/DAMPF" target="_blank" rel="noopener noreferrer"
+                aria-label="Open DAMPF on GitHub">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-meta">
+                  <img class="eco-icon" src="assets/icons/dampf_256.png" width="22" height="22" alt="">
+                  <div class="eco-copy">
+                    <strong>DAMPF</strong>
+                    <span>Ingest &amp; normalize</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a class="eco-node eco-node--branded eco-node--lg eco-accent-donner eco-place eco-pos-donner" data-node="donner"
+            style="--x: 49%; --y: -10%; --w: 24%;"
+            href="https://github.com/PiMaV/DONNER" target="_blank" rel="noopener noreferrer"
+            aria-label="Open DONNER on GitHub">
+            <div class="eco-shot">
+              <img src="assets/example_images/Plasmadischarge_Multiview_single_frame.png" alt="">
+            </div>
+            <div class="eco-meta">
+              <img class="eco-icon" src="assets/icons/donner_256.png" width="32" height="32" alt="">
+              <div class="eco-copy">
+                <strong>DONNER</strong>
+                <span>Explore 3D / XR</span>
+              </div>
+            </div>
+            <p class="eco-blurb">Immersive exploration of N-dimensional volumes, events, and XR views — also straight from raw data.</p>
+          </a>
+
+          <a class="eco-node eco-node--branded eco-node--lg eco-accent-blitz eco-place eco-pos-blitz" data-node="blitz"
+            style="--x: 17%; --y: -16%; --w: 26%;"
+            href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer"
+            aria-label="Open BLITZ on GitHub">
+            <div class="eco-shot">
+              <img src="assets/example_images/Atmospheric_IR_data.png" alt="">
+            </div>
+            <div class="eco-meta">
+              <img class="eco-icon" src="assets/icons/blitz_256.png" width="32" height="32" alt="">
+              <div class="eco-copy">
+                <strong>BLITZ</strong>
+                <span>Analyze 2D / stats</span>
+              </div>
+            </div>
+            <p class="eco-blurb">High-performance 2D inspection, measurement, and stats — drag-and-drop raw files and folders.</p>
+          </a>
+
+          <div class="eco-sidecars eco-group eco-place eco-pos-sidecars" data-node="sidecars" tabindex="0"
+            style="--x: 78%; --y: 10%; --w: 18%;"
+            aria-label="Sidecars — converters and adapters">
+            <div class="eco-group-head">
+              <strong>Sidecars</strong>
+              <span>Converters &amp; adapters</span>
+            </div>
+            <div class="eco-group-body">
+              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-copy">
+                  <strong>Event</strong>
+                  <span>Camera raw → viewer</span>
+                </div>
+              </div>
+              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-copy">
+                  <strong>Import</strong>
+                  <span>Ingest adapters</span>
+                </div>
+              </div>
+              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
+                <div class="eco-shot" aria-hidden="true"></div>
+                <div class="eco-copy">
+                  <strong>Adapter</strong>
+                  <span>Format converters</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="pipeline-foot">
-          <p class="pipeline-desc">Workspace and Experimental Toolkits for Data Transformation, Exploration and Research.</p>
+        <div class="eco-foot">
+          <p class="eco-desc">Modular data ecosystem: two strong viewers, optional curated WOLKE route, and sidecars when the data needs them.</p>
           <div class="tag-row">
             <span class="tag">Scientific Imaging</span>
             <span class="tag">Dataset Exploration</span>
@@ -109,7 +269,7 @@
             <span class="tag">Image Analysis</span>
             <span class="tag">Open Source</span>
           </div>
-          <p class="pipeline-readme">
+          <p class="eco-readme">
             <a href="https://github.com/PiMaV/WETTER" target="_blank" rel="noopener noreferrer">README on GitHub</a>
           </p>
         </div>
@@ -127,6 +287,8 @@
       </span>
     </div>
   </footer>
+
+  <script src="js/ecosystem.js" defer></script>
 </body>
 
 </html>
