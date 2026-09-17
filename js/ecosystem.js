@@ -19,25 +19,23 @@
     { id: "ocean-sidecars", from: "raw-data-ocean", to: "sidecars", group: "sidecar" },
     { id: "dampf-keim", from: "dampf", to: "keim", group: "wolke" },
     { id: "keim-wolke", from: "keim", to: "wolke", group: "wolke" },
-    { id: "wolke-blitz", from: "wolke", to: "blitz", group: "wolke" },
-    { id: "wolke-donner", from: "wolke", to: "donner", group: "wolke" },
-    { id: "sidecars-blitz", from: "sidecars", to: "blitz", group: "sidecar" },
-    { id: "sidecars-donner", from: "sidecars", to: "donner", group: "sidecar" },
+    { id: "wolke-viewers", from: "wolke", to: "viewers", group: "wolke" },
+    { id: "sidecars-viewers", from: "sidecars", to: "viewers", group: "sidecar" },
   ];
 
   const WOLKE_PATH = [
     "ocean-curated",
     "dampf-keim",
     "keim-wolke",
-    "wolke-blitz",
-    "wolke-donner",
+    "wolke-viewers",
   ];
 
-  const SIDECAR_PATH = ["ocean-sidecars", "sidecars-blitz", "sidecars-donner"];
+  const SIDECAR_PATH = ["ocean-sidecars", "sidecars-viewers"];
 
   const HOVER_EDGES = {
-    blitz: ["ocean-blitz", "wolke-blitz", "sidecars-blitz"],
-    donner: ["ocean-donner", "wolke-donner", "sidecars-donner"],
+    blitz: ["ocean-blitz", "wolke-viewers", "sidecars-viewers"],
+    donner: ["ocean-donner", "wolke-viewers", "sidecars-viewers"],
+    viewers: ["ocean-blitz", "ocean-donner", "wolke-viewers", "sidecars-viewers"],
     curated: WOLKE_PATH,
     wolke: WOLKE_PATH,
     dampf: WOLKE_PATH,
@@ -196,7 +194,14 @@
 
     // Curated path also lights DAMPF/KEIM/WOLKE plates inside the group.
     if (edgeIds === WOLKE_PATH || nodeId === "curated") {
-      ["dampf", "keim", "wolke", "curated"].forEach((id) => {
+      ["dampf", "keim", "wolke", "curated", "viewers", "blitz", "donner"].forEach((id) => {
+        const el = nodeEl(id);
+        if (el) el.classList.add("is-active");
+      });
+    }
+
+    if (edgeIds === SIDECAR_PATH || nodeId === "sidecars") {
+      ["viewers", "blitz", "donner"].forEach((id) => {
         const el = nodeEl(id);
         if (el) el.classList.add("is-active");
       });
@@ -204,6 +209,13 @@
 
     const self = nodeEl(nodeId);
     if (self) self.classList.add("is-active");
+
+    if (nodeId === "blitz" || nodeId === "donner" || nodeId === "viewers") {
+      ["viewers", "blitz", "donner"].forEach((id) => {
+        const el = nodeEl(id);
+        if (el) el.classList.add("is-active");
+      });
+    }
   }
 
   function bindHoverTarget(el, nodeId) {
@@ -240,5 +252,19 @@
   requestAnimationFrame(() => {
     drawEdges();
     requestAnimationFrame(drawEdges);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.repeat) return;
+    if (event.key !== "b" && event.key !== "B") return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    const target = event.target;
+    if (
+      target instanceof HTMLElement &&
+      target.closest("input, textarea, select, [contenteditable='true']")
+    ) {
+      return;
+    }
+    document.body.classList.toggle("is-bg-off");
   });
 })();

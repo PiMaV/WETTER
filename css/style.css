@@ -54,14 +54,61 @@ html {
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   margin: 0;
   color: var(--text);
+  background: #070a0e;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.page-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 10, 14, 0.1) 0%,
+    transparent 14%,
+    transparent 58%,
+    rgba(7, 10, 14, 0.7) 76%,
+    rgba(7, 10, 14, 0.94) 92%,
+    #070a0e 100%
+  );
+}
+
+body.is-bg-off .page-bg {
+  display: none;
+}
+
+body.is-bg-off {
   background:
     radial-gradient(circle at top left, rgba(0, 255, 242, 0.07), transparent 26%),
     radial-gradient(circle at top right, rgba(255, 90, 79, 0.06), transparent 24%),
     linear-gradient(180deg, #0a0e13 0%, #0b0f14 100%);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.5;
+}
+
+main,
+.footer {
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -90,6 +137,7 @@ a {
   font-size: clamp(2.8rem, 6vw, 5.4rem);
   line-height: 0.95;
   letter-spacing: 0.08em;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
 }
 
 .hero .brand-expand {
@@ -97,6 +145,15 @@ a {
   color: var(--muted);
   font-size: 1.2rem;
   line-height: 1.45;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.65);
+}
+
+.hero p.lead {
+  margin: 0 0 16px;
+  max-width: 40rem;
+  color: var(--text);
+  font-size: 1.15rem;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.65);
 }
 
 .hero .brand-expand .acronym-init {
@@ -105,13 +162,6 @@ a {
   color: var(--text);
   font-size: 1.12em;
   letter-spacing: 0.02em;
-}
-
-.hero p.lead {
-  margin: 0 0 16px;
-  max-width: 40rem;
-  color: var(--text);
-  font-size: 1.15rem;
 }
 
 .hero-talk {
@@ -151,7 +201,7 @@ a {
 /* —— Ecosystem stage (desktop % layout) —— */
 
 .eco-wrap {
-  width: min(calc(100% - 32px), 1280px);
+  width: min(calc(100% - 32px), 1340px);
 }
 
 .eco-stage {
@@ -159,12 +209,23 @@ a {
   --eco-edge-strong: rgba(255, 255, 255, 0.78);
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  min-height: 640px;
+  aspect-ratio: 3 / 2;
+  min-height: 860px;
   border-radius: 28px;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   background: transparent;
-  overflow: hidden;
+  overflow: visible;
+}
+
+body.is-bg-off .eco-stage {
+  border-color: var(--line);
+}
+
+body:not(.is-bg-off) .eco-node,
+body:not(.is-bg-off) .eco-stack,
+body:not(.is-bg-off) .eco-sidecars,
+body:not(.is-bg-off) .eco-viewers {
+  background: rgba(11, 15, 20, 0.78);
 }
 
 /*
@@ -183,8 +244,8 @@ a {
 .eco-stack {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 8px;
   border-radius: 14px;
   border: 1px solid rgba(0, 255, 242, 0.22);
   background: rgba(11, 15, 20, 0.42);
@@ -258,7 +319,7 @@ a {
 .eco-group-body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .eco-stage.is-hovering .eco-sidecars {
@@ -276,13 +337,55 @@ a {
   opacity: 1;
 }
 
+.eco-viewers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 12px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(11, 15, 20, 0.35);
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.eco-viewers:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.eco-viewers-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.eco-stage.is-hovering .eco-viewers {
+  opacity: 0.34;
+}
+
+.eco-stage.is-hovering .eco-viewers.is-active {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 28px rgba(255, 255, 255, 0.08);
+}
+
+.eco-stage.is-hovering .eco-viewers.is-active .eco-node {
+  opacity: 1;
+}
+
 .eco-edges {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
   overflow: visible;
 }
 
@@ -334,6 +437,11 @@ a {
     transform 0.2s ease;
 }
 
+.eco-place.eco-node,
+.eco-place {
+  position: absolute;
+}
+
 .eco-node:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.55);
   outline-offset: 3px;
@@ -349,20 +457,148 @@ a {
 }
 
 .eco-shot {
+  position: relative;
   width: 100%;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 55%),
-    rgba(0, 0, 0, 0.22);
+  background: #05080c;
   overflow: hidden;
 }
 
 .eco-shot img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.eco-shot--blitz img {
+  object-position: 50% 42%;
+}
+
+.eco-shot--wolke img {
+  object-position: 50% 18%;
+}
+
+.eco-shot--donner img {
+  object-position: 52% 88%;
+}
+
+.eco-shot--keim img {
+  object-position: 50% 42%;
+}
+
+.eco-shot--dampf img {
+  object-position: 50% 52%;
+}
+
+.eco-shot--evt img {
+  object-position: 50% 6%;
+}
+
+.eco-node--photo {
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.eco-node--photo .eco-shot {
+  border: 0;
+  border-radius: 0;
+}
+
+.eco-node--stack {
+  padding: 8px 8px 10px;
+  gap: 8px;
+  overflow: visible;
+  z-index: 3;
+}
+
+.eco-node--stack .eco-shot {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+}
+
+.eco-node--stack .eco-caption {
+  position: static;
+  padding: 0 4px 0;
+  background: none;
+  pointer-events: auto;
+}
+
+.eco-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 32px 10px 10px;
+  background: linear-gradient(
+    to top,
+    rgba(11, 15, 20, 0.94) 0%,
+    rgba(11, 15, 20, 0.7) 46%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.eco-caption .eco-copy span,
+.eco-caption .eco-blurb {
+  color: #c8d3de;
+}
+
+.eco-node--stack .eco-caption .eco-copy span {
+  color: var(--muted);
+}
+
+.eco-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 8;
+  width: max(100%, 22rem);
+  max-width: 28rem;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: #121821;
+  color: #f4f7fb;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 450;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.eco-node:hover > .eco-tip,
+.eco-node:focus-visible > .eco-tip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.eco-accent-blitz > .eco-tip {
+  border-color: rgba(255, 90, 79, 0.7);
+}
+
+.eco-accent-donner > .eco-tip {
+  border-color: rgba(139, 124, 255, 0.7);
+}
+
+.eco-node--lg > .eco-tip {
+  top: calc(100% + 10px);
+  bottom: auto;
+}
+
+.eco-node--plain {
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 10px;
+  min-height: 42px;
 }
 
 .eco-meta {
@@ -428,34 +664,84 @@ a {
 
 .eco-node--lg {
   padding: 10px;
-  border-radius: 14px;
-  border-width: 1.5px;
+  border-radius: 16px;
+  border-width: 2px;
+}
+
+.eco-node--lg.eco-node--photo {
+  padding: 0;
+}
+
+.eco-node--lg.eco-node--stack {
+  padding: 10px 10px 12px;
 }
 
 .eco-node--lg .eco-shot {
-  aspect-ratio: 5 / 4;
-  min-height: 120px;
-  max-height: 168px;
+  aspect-ratio: 16 / 9;
+}
+
+.eco-node--lg .eco-caption {
+  padding: 36px 12px 10px;
+}
+
+.eco-node--lg.eco-node--stack .eco-caption {
+  padding: 0 2px;
 }
 
 .eco-node--lg .eco-icon,
 .eco-node--lg .eco-icon--mark {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+}
+
+.eco-kicker {
+  margin: 0 0 2px;
+  font-family: Orbitron, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c8d3de;
+}
+
+.eco-role-line {
+  color: #f4f7fb;
+  font-size: 0.95rem;
+  font-weight: 550;
+  line-height: 1.3;
+}
+
+.eco-node--stack .eco-caption .eco-role-line {
+  color: #f4f7fb;
 }
 
 .eco-node--lg .eco-copy strong {
-  font-size: 0.92rem;
+  font-size: 1.16rem;
 }
 
-.eco-node--lg .eco-copy span {
-  font-size: 0.76rem;
+.eco-node--lg .eco-role-line {
+  font-size: 1.02rem;
 }
 
-.eco-node--md .eco-shot {
+.eco-sidecars .eco-node--md .eco-shot {
   aspect-ratio: 16 / 10;
-  min-height: 44px;
-  max-height: 64px;
+}
+
+.eco-sidecars .eco-node--stack .eco-copy strong {
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.eco-stack .eco-node--md .eco-shot {
+  aspect-ratio: 16 / 10;
+}
+
+.eco-stack .eco-node--sm .eco-shot {
+  aspect-ratio: 2 / 1;
+}
+
+.eco-node--md .eco-caption {
+  padding: 30px 10px 9px;
 }
 
 .eco-node--md .eco-icon,
@@ -471,10 +757,16 @@ a {
   gap: 6px;
 }
 
+.eco-node--sm.eco-node--photo {
+  padding: 0;
+}
+
 .eco-node--sm .eco-shot {
-  aspect-ratio: 16 / 9;
-  min-height: 32px;
-  max-height: 44px;
+  aspect-ratio: 16 / 10;
+}
+
+.eco-node--sm .eco-caption {
+  padding: 26px 8px 8px;
 }
 
 .eco-node--sm .eco-icon,
@@ -509,35 +801,61 @@ a {
 
 .eco-ocean-shots {
   display: grid;
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-areas:
+    "micro ir aerial allsky thermal lapse"
+    "event iccd scmos tables multi hill";
+  gap: 10px 12px;
   width: 100%;
 }
 
+.eco-ocean-ir { grid-area: ir; }
+.eco-ocean-micro { grid-area: micro; }
+.eco-ocean-aerial { grid-area: aerial; }
+.eco-ocean-allsky { grid-area: allsky; }
+.eco-ocean-thermal { grid-area: thermal; }
+.eco-ocean-lapse { grid-area: lapse; }
+.eco-ocean-event { grid-area: event; }
+.eco-ocean-iccd { grid-area: iccd; }
+.eco-ocean-scmos { grid-area: scmos; }
+.eco-ocean-tables { grid-area: tables; }
+.eco-ocean-multi { grid-area: multi; }
+.eco-ocean-hill { grid-area: hill; }
+
 .eco-ocean-tile {
+  position: relative;
   margin: 0;
+  min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  min-width: 0;
+  z-index: 1;
 }
 
 .eco-ocean-shot {
-  aspect-ratio: 1;
-  min-height: 48px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    linear-gradient(145deg, rgba(0, 255, 242, 0.06), transparent 55%),
-    rgba(0, 0, 0, 0.22);
+  position: relative;
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+  min-height: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #05080c;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
   overflow: hidden;
 }
 
 .eco-ocean-shot img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.eco-ocean-tile--wide .eco-ocean-shot img {
+  object-fit: contain;
 }
 
 .eco-ocean-tile--empty .eco-ocean-shot {
@@ -545,9 +863,11 @@ a {
 }
 
 .eco-ocean-tile figcaption {
+  flex: 0 0 auto;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.62rem;
-  line-height: 1.25;
+  font-size: 0.68rem;
+  line-height: 1.3;
   letter-spacing: 0.01em;
 }
 
@@ -556,7 +876,7 @@ a {
 }
 
 .eco-node--source .eco-copy strong {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
 }
 
 .eco-node--source .eco-copy span {
@@ -577,11 +897,11 @@ a {
 }
 
 .eco-accent-blitz {
-  border-color: rgba(255, 90, 79, 0.4);
+  border-color: rgba(255, 90, 79, 0.55);
 }
 
 .eco-accent-donner {
-  border-color: rgba(139, 124, 255, 0.4);
+  border-color: rgba(139, 124, 255, 0.55);
 }
 
 .eco-stage.is-hovering .eco-node.is-active.eco-accent-dampf {
@@ -630,6 +950,16 @@ a {
   max-width: 720px;
 }
 
+body:not(.is-bg-off) .eco-foot {
+  padding: 16px 18px 10px;
+  border-radius: 16px;
+  background: rgba(7, 10, 14, 0.7);
+}
+
+body:not(.is-bg-off) .footer-box {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
 .eco-desc {
   margin: 0 0 14px;
   color: var(--muted);
@@ -658,6 +988,10 @@ a {
 .footer {
   padding: 38px 0 56px;
   color: var(--muted);
+}
+
+body:not(.is-bg-off) .footer {
+  color: #c8d3de;
 }
 
 .footer-box {
@@ -714,7 +1048,8 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .eco-node,
-  .eco-edges path {
+  .eco-edges path,
+  .eco-tip {
     transition: none;
   }
 }

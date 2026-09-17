@@ -53,6 +53,9 @@
 </head>
 
 <body>
+  <div class="page-bg" data-page-bg aria-hidden="true">
+    <img src="assets/neo-ocean-ohne-seitenwellen.png" alt="">
+  </div>
   <main id="top">
     <section class="hero">
       <div class="wrap hero-grid">
@@ -82,178 +85,215 @@
           -->
 
           <div class="eco-node eco-node--source eco-place eco-pos-ocean" data-node="raw-data-ocean" tabindex="0"
-            style="--x: 3%; --y: 70%; --w: 94%;">
+            style="--x: 2.5%; --y: 58%; --w: 95%;">
             <div class="eco-ocean-shots">
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-micro">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Atmospheric_IR_data.png" alt="">
-                </div>
-                <figcaption>Atmospheric IR</figcaption>
-              </figure>
-              <figure class="eco-ocean-tile">
-                <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Farfield_Microscopic_SLS_Print.png" alt="">
+                  <img src="assets/example_images/512_px/Farfield_Microscopic_SLS_Print.png" alt="Far-field microscopy of an SLS print">
                 </div>
                 <figcaption>Microscopy</figcaption>
               </figure>
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-ir">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Geodata_Drone_footage.JPG" alt="">
+                  <img src="assets/example_images/512_px/Atmospheric_IR_data.png" alt="Atmospheric infrared image">
+                </div>
+                <figcaption>Atmospheric IR</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-aerial">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/Geodata_Drone_footage.JPG" alt="Aerial geodata from drone footage">
                 </div>
                 <figcaption>Aerial / geodata</figcaption>
               </figure>
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-allsky">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Sky_Dome_cam.jpg" alt="">
+                  <img src="assets/example_images/512_px/Sky_Dome_cam.jpg" alt="All-sky camera frame">
                 </div>
                 <figcaption>All-sky</figcaption>
               </figure>
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-thermal">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Plasmadischarge_ICCD.png" alt="">
+                  <img src="assets/example_images/512_px/HIK_Micro_Thermal.jpeg" alt="Micro thermal camera frame">
+                </div>
+                <figcaption>Thermal</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-lapse">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/Timelapse_Bird.png" alt="Timelapse recording">
+                </div>
+                <figcaption>Timelapse</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-event">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/event_camera.png" alt="Event camera recording">
+                </div>
+                <figcaption>Event camera</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-iccd">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/Plasmadischarge_ICCD.png" alt="Plasma discharge captured with an ICCD">
                 </div>
                 <figcaption>ICCD</figcaption>
               </figure>
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-scmos">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Plasmadischarge_sCMOS.jpg" alt="">
+                  <img src="assets/example_images/512_px/Plasmadischarge_sCMOS.jpg" alt="Plasma discharge captured with an sCMOS camera">
                 </div>
                 <figcaption>sCMOS</figcaption>
               </figure>
-              <figure class="eco-ocean-tile">
+              <figure class="eco-ocean-tile eco-ocean-tables">
                 <div class="eco-ocean-shot">
-                  <img src="assets/example_images/Acoustic_Spectrum.png" alt="">
+                  <img src="assets/example_images/512_px/Tables_Data.png" alt="Tabular and array data">
                 </div>
-                <figcaption>Acoustic</figcaption>
-              </figure>
-              <figure class="eco-ocean-tile eco-ocean-tile--empty">
-                <div class="eco-ocean-shot" aria-hidden="true"></div>
-                <figcaption>Event camera</figcaption>
-              </figure>
-              <figure class="eco-ocean-tile eco-ocean-tile--empty">
-                <div class="eco-ocean-shot" aria-hidden="true"></div>
                 <figcaption>Tables &amp; arrays</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-multi">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/Plasmadischarge_Multiview_single_frame.png" alt="Multiview plasma discharge frame">
+                </div>
+                <figcaption>Multiview</figcaption>
+              </figure>
+              <figure class="eco-ocean-tile eco-ocean-hill">
+                <div class="eco-ocean-shot">
+                  <img src="assets/example_images/512_px/Hillshade.png" alt="Hillshade terrain">
+                </div>
+                <figcaption>Hillshade</figcaption>
               </figure>
             </div>
             <div class="eco-copy">
               <strong>Raw Data Ocean</strong>
-              <span>Scientific images &amp; camera techniques — plus JPEG/TIFF, NumPy, MATLAB, ASCII, and more</span>
+              <span>(Scientific) images in all their glory; from JPEG/TIFF via NumPy to ASCII and more</span>
             </div>
           </div>
 
           <div class="eco-stack eco-group eco-place eco-pos-curated" data-node="curated" tabindex="0"
-            style="--x: 3%; --y: 6%; --w: 15%;"
+            style="--x: 1.5%; --y: 3%; --w: 15.5%;"
             aria-label="Curated route — DAMPF, KEIM, WOLKE">
             <div class="eco-group-head">
               <strong>Curated route</strong>
               <span>Build a browsable SQL image database, then filter into the viewers</span>
             </div>
             <div class="eco-group-body">
-              <a class="eco-node eco-node--branded eco-node--md eco-accent-wolke" data-node="wolke"
+              <a class="eco-node eco-node--photo eco-node--md eco-accent-wolke" data-node="wolke"
                 data-hover-node="curated"
                 href="https://github.com/PiMaV/WOLKE" target="_blank" rel="noopener noreferrer"
                 aria-label="Open WOLKE on GitHub">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-meta">
-                  <img class="eco-icon" src="assets/icons/wolke_256.png" width="26" height="26" alt="">
-                  <div class="eco-copy">
-                    <strong>WOLKE</strong>
-                    <span>Filter &amp; select</span>
+                <div class="eco-shot eco-shot--wolke">
+                  <img src="assets/screenshots/512_px/WOLKE_Screenshot_2.png" alt="WOLKE filter and select view">
+                </div>
+                <div class="eco-caption">
+                  <div class="eco-meta">
+                    <img class="eco-icon" src="assets/icons/wolke_256.png" width="26" height="26" alt="">
+                    <div class="eco-copy">
+                      <strong>WOLKE</strong>
+                      <span>Filter &amp; select</span>
+                    </div>
                   </div>
                 </div>
               </a>
 
-              <a class="eco-node eco-node--branded eco-node--sm eco-accent-keim" data-node="keim"
+              <a class="eco-node eco-node--photo eco-node--sm eco-accent-keim" data-node="keim"
                 data-hover-node="curated"
                 href="https://github.com/PiMaV/KEIM" target="_blank" rel="noopener noreferrer"
                 aria-label="Open KEIM on GitHub">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-meta">
-                  <img class="eco-icon" src="assets/icons/keim_256.png" width="22" height="22" alt="">
-                  <div class="eco-copy">
-                    <strong>KEIM</strong>
-                    <span>Index &amp; enrich</span>
+                <div class="eco-shot eco-shot--keim">
+                  <img src="assets/screenshots/512_px/KEIM_Screenshot.png" alt="KEIM index and enrich dialog">
+                </div>
+                <div class="eco-caption">
+                  <div class="eco-meta">
+                    <img class="eco-icon" src="assets/icons/keim_256.png" width="22" height="22" alt="">
+                    <div class="eco-copy">
+                      <strong>KEIM</strong>
+                      <span>Index &amp; enrich</span>
+                    </div>
                   </div>
                 </div>
               </a>
 
-              <a class="eco-node eco-node--branded eco-node--sm eco-accent-dampf" data-node="dampf"
+              <a class="eco-node eco-node--photo eco-node--sm eco-accent-dampf" data-node="dampf"
                 data-hover-node="curated"
                 href="https://github.com/PiMaV/DAMPF" target="_blank" rel="noopener noreferrer"
                 aria-label="Open DAMPF on GitHub">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-meta">
-                  <img class="eco-icon" src="assets/icons/dampf_256.png" width="22" height="22" alt="">
-                  <div class="eco-copy">
-                    <strong>DAMPF</strong>
-                    <span>Ingest &amp; normalize</span>
+                <div class="eco-shot eco-shot--dampf">
+                  <img src="assets/screenshots/512_px/DAMPF_Screenshot.png" alt="DAMPF ingest and normalize view">
+                </div>
+                <div class="eco-caption">
+                  <div class="eco-meta">
+                    <img class="eco-icon" src="assets/icons/dampf_256.png" width="22" height="22" alt="">
+                    <div class="eco-copy">
+                      <strong>DAMPF</strong>
+                      <span>Ingest &amp; normalize</span>
+                    </div>
                   </div>
                 </div>
               </a>
             </div>
           </div>
 
-          <a class="eco-node eco-node--branded eco-node--lg eco-accent-donner eco-place eco-pos-donner" data-node="donner"
-            style="--x: 49%; --y: -10%; --w: 24%;"
-            href="https://github.com/PiMaV/DONNER" target="_blank" rel="noopener noreferrer"
-            aria-label="Open DONNER on GitHub">
-            <div class="eco-shot">
-              <img src="assets/example_images/Plasmadischarge_Multiview_single_frame.png" alt="">
+          <div class="eco-viewers eco-group eco-place eco-pos-viewers" data-node="viewers" tabindex="0"
+            style="--x: 18.5%; --y: 2.5%; --w: 63%;"
+            aria-label="Viewers — BLITZ and DONNER">
+            <div class="eco-group-head">
+              <strong>Viewers</strong>
+              <span>The core pair — 2D inspection and N-dimensional exploration</span>
             </div>
-            <div class="eco-meta">
-              <img class="eco-icon" src="assets/icons/donner_256.png" width="32" height="32" alt="">
-              <div class="eco-copy">
-                <strong>DONNER</strong>
-                <span>Explore 3D / XR</span>
-              </div>
-            </div>
-            <p class="eco-blurb">Immersive exploration of N-dimensional volumes, events, and XR views — also straight from raw data.</p>
-          </a>
+            <div class="eco-viewers-body">
+              <a class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-blitz" data-node="blitz"
+                data-hover-node="blitz"
+                href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer"
+                aria-label="Open BLITZ on GitHub">
+                <div class="eco-shot eco-shot--blitz">
+                  <img src="assets/screenshots/512_px/BLITZ_Screenshot.png" alt="BLITZ analyzing a 2D time series">
+                </div>
+                <div class="eco-caption">
+                  <div class="eco-meta">
+                    <img class="eco-icon" src="assets/icons/blitz_256.png" width="36" height="36" alt="">
+                    <div class="eco-copy">
+                      <strong>BLITZ</strong>
+                      <span class="eco-role-line">Analyze 2D / stats</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="eco-tip" role="tooltip">High-performance 2D inspection, measurement, and stats — drag-and-drop raw files and folders.</span>
+              </a>
 
-          <a class="eco-node eco-node--branded eco-node--lg eco-accent-blitz eco-place eco-pos-blitz" data-node="blitz"
-            style="--x: 17%; --y: -16%; --w: 26%;"
-            href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer"
-            aria-label="Open BLITZ on GitHub">
-            <div class="eco-shot">
-              <img src="assets/example_images/Atmospheric_IR_data.png" alt="">
+              <a class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-donner" data-node="donner"
+                data-hover-node="donner"
+                href="https://github.com/PiMaV/DONNER" target="_blank" rel="noopener noreferrer"
+                aria-label="Open DONNER on GitHub">
+                <div class="eco-shot eco-shot--donner">
+                  <img src="assets/screenshots/512_px/DONNER_Brain_Screenshot.png" alt="DONNER exploring a volumetric brain scan">
+                </div>
+                <div class="eco-caption">
+                  <div class="eco-meta">
+                    <img class="eco-icon" src="assets/icons/donner_256.png" width="36" height="36" alt="">
+                    <div class="eco-copy">
+                      <strong>DONNER</strong>
+                      <span class="eco-role-line">Explore 3D / XR</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="eco-tip" role="tooltip">Immersive exploration of N-dimensional volumes, events, and XR views — also straight from raw data.</span>
+              </a>
             </div>
-            <div class="eco-meta">
-              <img class="eco-icon" src="assets/icons/blitz_256.png" width="32" height="32" alt="">
-              <div class="eco-copy">
-                <strong>BLITZ</strong>
-                <span>Analyze 2D / stats</span>
-              </div>
-            </div>
-            <p class="eco-blurb">High-performance 2D inspection, measurement, and stats — drag-and-drop raw files and folders.</p>
-          </a>
+          </div>
 
           <div class="eco-sidecars eco-group eco-place eco-pos-sidecars" data-node="sidecars" tabindex="0"
-            style="--x: 78%; --y: 10%; --w: 18%;"
-            aria-label="Sidecars — converters and adapters">
+            style="--x: 83.5%; --y: 3%; --w: 15%;"
+            aria-label="Sidecars — Event camera Streamer">
             <div class="eco-group-head">
               <strong>Sidecars</strong>
-              <span>Converters &amp; adapters</span>
+              <span>When the data needs a converter</span>
             </div>
             <div class="eco-group-body">
-              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-copy">
-                  <strong>Event</strong>
-                  <span>Camera raw → viewer</span>
+              <div class="eco-node eco-node--photo eco-node--stack eco-node--md" data-hover-node="sidecars">
+                <div class="eco-shot eco-shot--evt">
+                  <img src="assets/screenshots/512_px/EVT_Reader_Screenshot.png" alt="Event camera Streamer converting camera raw to a viewer stream">
                 </div>
-              </div>
-              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-copy">
-                  <strong>Import</strong>
-                  <span>Ingest adapters</span>
-                </div>
-              </div>
-              <div class="eco-node eco-node--media eco-node--md" data-hover-node="sidecars">
-                <div class="eco-shot" aria-hidden="true"></div>
-                <div class="eco-copy">
-                  <strong>Adapter</strong>
-                  <span>Format converters</span>
+                <div class="eco-caption">
+                  <div class="eco-copy">
+                    <strong>Event camera Streamer</strong>
+                  </div>
                 </div>
               </div>
             </div>
