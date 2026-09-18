@@ -1,15 +1,19 @@
 /**
- * WETTER ecosystem diagram: data-driven edges + hover highlight.
+ * WETTER ecosystem diagram: data-driven SVG edges (always on).
  *
- * Layout contract (desktop):
+ * Layout contract (desktop ≥821px):
  * - Blocks are absolutely placed with --x/--y/--w % on the stage (edit in index.html).
  * - Ocean docks rise under each target’s horizontal center.
- * - Curated + sidecars are group nodes; one path style for all edges.
+ * - Edges: thick base + traveling dash pulse (direction without arrowheads).
+ * - Below 821px the stage is a normal flow stack; edges are not drawn.
  */
 (function () {
   const stage = document.querySelector("[data-eco-stage]");
   const svg = document.querySelector("[data-eco-edges]");
   if (!stage || !svg) return;
+
+  const DESKTOP_MQ = window.matchMedia("(min-width: 821px)");
+  const NS = "http://www.w3.org/2000/svg";
 
   /** @type {{ id: string, from: string, to: string, group: "direct" | "wolke" | "sidecar" }[]} */
   const EDGES = [
@@ -23,30 +27,13 @@
     { id: "sidecars-viewers", from: "sidecars", to: "viewers", group: "sidecar" },
   ];
 
-  const WOLKE_PATH = [
-    "ocean-curated",
-    "dampf-keim",
-    "keim-wolke",
-    "wolke-viewers",
-  ];
-
-  const SIDECAR_PATH = ["ocean-sidecars", "sidecars-viewers"];
-
-  const HOVER_EDGES = {
-    blitz: ["ocean-blitz", "wolke-viewers", "sidecars-viewers"],
-    donner: ["ocean-donner", "wolke-viewers", "sidecars-viewers"],
-    viewers: ["ocean-blitz", "ocean-donner", "wolke-viewers", "sidecars-viewers"],
-    curated: WOLKE_PATH,
-    wolke: WOLKE_PATH,
-    dampf: WOLKE_PATH,
-    keim: WOLKE_PATH,
-    sidecars: SIDECAR_PATH,
-    "raw-data-ocean": [
-      "ocean-curated",
-      "ocean-donner",
-      "ocean-blitz",
-      "ocean-sidecars",
-    ],
+  /** Soft emphasis only — never dims the rest. */
+  const EMPHASIZE = {
+    curated: "wolke",
+    dampf: "wolke",
+    keim: "wolke",
+    wolke: "wolke",
+    sidecars: "sidecar",
   };
 
   function nodeEl(id) {
@@ -92,16 +79,21 @@
     return stagePoint(r.left + r.width / 2, r.bottom);
   }
 
+  /** Prefer readable routes: vertical straight, side links shallow S-curves. */
   function curvePath(x1, y1, x2, y2) {
     const dx = x2 - x1;
     const dy = y2 - y1;
-    if (Math.abs(dx) < 8) {
+    if (Math.abs(dx) < 14) {
       return `M ${x1} ${y1} L ${x2} ${y2}`;
     }
-    const cx1 = x1 + dx * 0.15;
-    const cy1 = y1 + dy * 0.55;
-    const cx2 = x2 - dx * 0.15;
-    const cy2 = y2 - dy * 0.55;
+    if (Math.abs(dx) >= Math.abs(dy) * 1.15) {
+      const mx = x1 + dx * 0.5;
+      return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+    }
+    const cx1 = x1 + dx * 0.08;
+    const cy1 = y1 + dy * 0.42;
+    const cx2 = x2 - dx * 0.08;
+    const cy2 = y2 - dy * 0.42;
     return `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`;
   }
 
@@ -120,7 +112,36 @@
     };
   }
 
+  function clearEdges() {
+    svg.querySelectorAll("path[data-edge-id]").forEach((p) => p.remove());
+    stage.classList.remove("is-desktop-edges");
+  }
+
+  function upsertPath(map, id, role, group, d) {
+    const key = `${id}::${role}`;
+    let path = map.get(key);
+    if (!path) {
+      path = document.createElementNS(NS, "path");
+      path.setAttribute("data-edge-id", id);
+      path.setAttribute("data-edge-role", role);
+      path.setAttribute("data-group", group);
+      svg.appendChild(path);
+    } else {
+      map.delete(key);
+    }
+    path.setAttribute("d", d);
+    path.setAttribute("data-group", group);
+    return path;
+  }
+
   function drawEdges() {
+    if (!DESKTOP_MQ.matches) {
+      clearEdges();
+      return;
+    }
+
+    stage.classList.add("is-desktop-edges");
+
     const sr = stage.getBoundingClientRect();
     svg.setAttribute("viewBox", `0 0 ${sr.width} ${sr.height}`);
     svg.setAttribute("width", String(sr.width));
@@ -128,7 +149,7 @@
 
     const existing = new Map(
       [...svg.querySelectorAll("path[data-edge-id]")].map((p) => [
-        p.getAttribute("data-edge-id"),
+        `${p.getAttribute("data-edge-id")}::${p.getAttribute("data-edge-role") || "flow"}`,
         p,
       ])
     );
@@ -140,102 +161,67 @@
 
       const { a, b } = endpoints(edge, fromEl, toEl);
       const d = curvePath(a.x, a.y, b.x, b.y);
-
-      let path = existing.get(edge.id);
-      if (!path) {
-        path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        path.setAttribute("data-edge-id", edge.id);
-        path.setAttribute("data-group", edge.group);
-        svg.appendChild(path);
-      } else {
-        existing.delete(edge.id);
-      }
-      path.setAttribute("d", d);
+      upsertPath(existing, edge.id, "base", edge.group, d);
+      upsertPath(existing, edge.id, "flow", edge.group, d);
     }
 
     for (const stale of existing.values()) stale.remove();
   }
 
-  function nodesForEdges(edgeIds) {
-    const set = new Set();
-    for (const id of edgeIds) {
-      const edge = EDGES.find((e) => e.id === id);
-      if (!edge) continue;
-      set.add(edge.from);
-      set.add(edge.to);
-    }
-    return set;
+  function clearEmphasis() {
+    stage.classList.remove("is-emphasize-wolke", "is-emphasize-sidecar");
   }
 
-  function clearHover() {
-    stage.classList.remove("is-hovering");
-    stage.querySelectorAll(".is-active").forEach((el) => el.classList.remove("is-active"));
+  function applyEmphasis(nodeId) {
+    const group = EMPHASIZE[nodeId];
+    clearEmphasis();
+    if (!group) return;
+    stage.classList.add(
+      group === "wolke" ? "is-emphasize-wolke" : "is-emphasize-sidecar"
+    );
   }
 
-  function applyHover(nodeId) {
-    const edgeIds = HOVER_EDGES[nodeId];
-    if (!edgeIds) {
-      clearHover();
-      return;
-    }
-
-    stage.classList.add("is-hovering");
-    stage.querySelectorAll(".is-active").forEach((el) => el.classList.remove("is-active"));
-
-    for (const id of edgeIds) {
-      const path = svg.querySelector(`[data-edge-id="${id}"]`);
-      if (path) path.classList.add("is-active");
-    }
-
-    for (const id of nodesForEdges(edgeIds)) {
-      const el = nodeEl(id);
-      if (el) el.classList.add("is-active");
-    }
-
-    // Curated path also lights DAMPF/KEIM/WOLKE plates inside the group.
-    if (edgeIds === WOLKE_PATH || nodeId === "curated") {
-      ["dampf", "keim", "wolke", "curated", "viewers", "blitz", "donner"].forEach((id) => {
-        const el = nodeEl(id);
-        if (el) el.classList.add("is-active");
-      });
-    }
-
-    if (edgeIds === SIDECAR_PATH || nodeId === "sidecars") {
-      ["viewers", "blitz", "donner"].forEach((id) => {
-        const el = nodeEl(id);
-        if (el) el.classList.add("is-active");
-      });
-    }
-
-    const self = nodeEl(nodeId);
-    if (self) self.classList.add("is-active");
-
-    if (nodeId === "blitz" || nodeId === "donner" || nodeId === "viewers") {
-      ["viewers", "blitz", "donner"].forEach((id) => {
-        const el = nodeEl(id);
-        if (el) el.classList.add("is-active");
-      });
-    }
-  }
-
-  function bindHoverTarget(el, nodeId) {
-    if (!nodeId || !HOVER_EDGES[nodeId]) return;
-    const enter = () => applyHover(nodeId);
-    const leave = () => clearHover();
-    el.addEventListener("pointerenter", enter);
-    el.addEventListener("pointerleave", leave);
-    el.addEventListener("focus", enter);
-    el.addEventListener("blur", leave);
+  function bindSoftEmphasis(el, nodeId) {
+    if (!nodeId || !EMPHASIZE[nodeId]) return;
+    el.addEventListener("pointerenter", () => applyEmphasis(nodeId));
+    el.addEventListener("pointerleave", clearEmphasis);
+    el.addEventListener("focus", () => applyEmphasis(nodeId));
+    el.addEventListener("blur", clearEmphasis);
   }
 
   stage.querySelectorAll("[data-node]").forEach((el) => {
-    // Prefer explicit hover alias when present (e.g. plates inside curated).
-    const hoverId = el.getAttribute("data-hover-node") || el.getAttribute("data-node");
-    bindHoverTarget(el, hoverId);
+    const id = el.getAttribute("data-hover-node") || el.getAttribute("data-node");
+    bindSoftEmphasis(el, id);
   });
   stage.querySelectorAll("[data-hover-node]").forEach((el) => {
     if (el.hasAttribute("data-node")) return;
-    bindHoverTarget(el, el.getAttribute("data-hover-node"));
+    bindSoftEmphasis(el, el.getAttribute("data-hover-node"));
+  });
+
+  /** Tap/focus tooltips on touch devices (hover alone is unreliable). */
+  stage.querySelectorAll(".eco-node").forEach((node) => {
+    const tip = node.querySelector(":scope > .eco-tip");
+    if (!tip) return;
+
+    node.addEventListener("click", (event) => {
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      if (event.target instanceof Element && event.target.closest("a")) return;
+      const open = node.classList.contains("is-tip-open");
+      stage.querySelectorAll(".eco-node.is-tip-open").forEach((n) => {
+        n.classList.remove("is-tip-open");
+      });
+      if (!open) {
+        node.classList.add("is-tip-open");
+      }
+    });
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (event.target.closest(".eco-node.is-tip-open")) return;
+    stage.querySelectorAll(".eco-node.is-tip-open").forEach((n) => {
+      n.classList.remove("is-tip-open");
+    });
   });
 
   let resizeTimer = 0;
@@ -245,6 +231,11 @@
   };
 
   window.addEventListener("resize", scheduleDraw);
+  if (typeof DESKTOP_MQ.addEventListener === "function") {
+    DESKTOP_MQ.addEventListener("change", scheduleDraw);
+  } else if (typeof DESKTOP_MQ.addListener === "function") {
+    DESKTOP_MQ.addListener(scheduleDraw);
+  }
   if (typeof ResizeObserver !== "undefined") {
     new ResizeObserver(scheduleDraw).observe(stage);
   }

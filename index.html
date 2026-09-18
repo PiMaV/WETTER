@@ -7,7 +7,7 @@
 
   <title>WETTER — Workspace and Experimental Toolkits</title>
   <meta name="description"
-    content="WETTER — Workspace and Experimental Toolkits for Data Transformation, Exploration and Research. A modular suite for scientific imaging, dataset exploration, and interactive analysis." />
+    content="WETTER — Workspace and Experimental Toolkits for Data Transformation, Exploration and Research. Analyze scientific images in 2D or explore them in 3D/XR." />
   <meta name="keywords"
     content="WETTER, Workspace and Experimental Toolkits, data transformation, scientific data processing, scientific imaging, dataset exploration, image analysis, BLITZ, DONNER, DAMPF, KEIM, WOLKE" />
   <meta name="author" content="Philipp Mattern" />
@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="WETTER" />
   <meta property="og:description"
-    content="Workspace and Experimental Toolkits for Data Transformation, Exploration and Research." />
+    content="Analyze scientific images in 2D or explore them in 3D/XR — Workspace and Experimental Toolkits." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://wetter.mess.engineering/assets/WETTER_Framework_1024.png" />
   <meta name="twitter:image" content="https://wetter.mess.engineering/assets/WETTER_Framework_1024.png" />
@@ -24,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WETTER" />
   <meta name="twitter:description"
-    content="Workspace and Experimental Toolkits for Data Transformation, Exploration and Research." />
+    content="Analyze scientific images in 2D or explore them in 3D/XR — Workspace and Experimental Toolkits." />
   <meta name="apple-mobile-web-app-title" content="WETTER">
 
   <link rel="stylesheet" href="css/style.css" />
@@ -41,7 +41,7 @@
     "@type": "SoftwareSourceCode",
     "name": "WETTER",
     "alternateName": "Workspace and Experimental Toolkits for Data Transformation, Exploration and Research",
-    "description": "Workspace and Experimental Toolkits for Data Transformation, Exploration and Research. A modular suite for scientific imaging, dataset exploration, and interactive analysis.",
+    "description": "Workspace and Experimental Toolkits for Data Transformation, Exploration and Research. Analyze scientific images in 2D or explore them in 3D/XR.",
     "codeRepository": "https://github.com/PiMaV/WETTER",
     "programmingLanguage": ["Python", "HTML"],
     "creator": {
@@ -59,16 +59,17 @@
   <main id="top">
     <section class="hero">
       <div class="wrap hero-grid">
-        <div>
+        <div class="hero-copy">
           <h1>WETTER</h1>
           <p class="brand-expand"><span class="acronym-init">W</span>orkspace and <span class="acronym-init">E</span>xperimental <span class="acronym-init">T</span>oolkits for Data <span class="acronym-init">T</span>ransformation, <span class="acronym-init">E</span>xploration and <span class="acronym-init">R</span>esearch</p>
-
           <p class="lead">
-            The data can go straight in — or take the route it needs.
+            Analyze scientific images and data in <strong>2D</strong>, or explore them in <strong>3D / XR</strong>.
+            Drop raw files straight into the viewers — or take a curated or converted route when the dataset needs it.
           </p>
-          <p class="hero-talk">
-            <a href="docs/BLITZ_WOLKE_DPG25V2_Compact.pdf" target="_blank" rel="noopener noreferrer">DPG 2025 early conceptual Symposium Talk (PDF)</a>
-          </p>
+          <div class="hero-ctas">
+            <a class="btn btn--primary" href="https://donner.mess.engineering/" target="_blank" rel="noopener noreferrer">Open DONNER in browser</a>
+            <a class="btn btn--secondary" href="https://github.com/PiMaV/BLITZ/releases/latest" target="_blank" rel="noopener noreferrer">Download BLITZ</a>
+          </div>
         </div>
       </div>
     </section>
@@ -82,6 +83,8 @@
             Desktop layout: absolute % on the stage.
             Tune --x / --y / --w here (or in css/style.css .eco-pos-*).
             Ocean docks rise under each block’s horizontal center.
+            Gaps left/right of Viewers leave room for Curated and Converted edges.
+            Path names live on the group heads (same colors as the edges) — no floating legend.
           -->
 
           <div class="eco-node eco-node--source eco-place eco-pos-ocean" data-node="raw-data-ocean" tabindex="0"
@@ -167,10 +170,11 @@
           </div>
 
           <div class="eco-stack eco-group eco-place eco-pos-curated" data-node="curated" tabindex="0"
-            style="--x: 1.5%; --y: 3%; --w: 15.5%;"
+            style="--x: 1.5%; --y: 3%; --w: 14%;"
             aria-label="Curated route — DAMPF, KEIM, WOLKE">
             <div class="eco-group-head">
               <strong>Curated route</strong>
+              <span class="eco-path-tag eco-path-tag--curated">Curated path</span>
               <span>Build a browsable SQL image database, then filter into the viewers</span>
             </div>
             <div class="eco-group-body">
@@ -231,17 +235,16 @@
           </div>
 
           <div class="eco-viewers eco-group eco-place eco-pos-viewers" data-node="viewers" tabindex="0"
-            style="--x: 18.5%; --y: 2.5%; --w: 63%;"
+            style="--x: 20%; --y: 2.5%; --w: 58%;"
             aria-label="Viewers — BLITZ and DONNER">
             <div class="eco-group-head">
               <strong>Viewers</strong>
-              <span>The core pair — 2D inspection and N-dimensional exploration</span>
+              <span class="eco-path-tag eco-path-tag--direct">Direct from raw</span>
+              <span>The core pair — also fed by the curated and converted routes</span>
             </div>
             <div class="eco-viewers-body">
-              <a class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-blitz" data-node="blitz"
-                data-hover-node="blitz"
-                href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer"
-                aria-label="Open BLITZ on GitHub">
+              <div class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-blitz" data-node="blitz"
+                tabindex="0">
                 <div class="eco-shot eco-shot--blitz">
                   <img src="assets/screenshots/512_px/BLITZ_Screenshot.png" alt="BLITZ analyzing a 2D time series">
                 </div>
@@ -251,16 +254,18 @@
                     <div class="eco-copy">
                       <strong>BLITZ</strong>
                       <span class="eco-role-line">Analyze 2D / stats</span>
+                      <span class="eco-launch-row">
+                        <a class="eco-launch" href="https://github.com/PiMaV/BLITZ/releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
+                        <a class="eco-launch eco-launch--muted" href="https://github.com/PiMaV/BLITZ" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      </span>
                     </div>
                   </div>
                 </div>
                 <span class="eco-tip" role="tooltip">High-performance 2D inspection, measurement, and stats — drag-and-drop raw files and folders.</span>
-              </a>
+              </div>
 
-              <a class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-donner" data-node="donner"
-                data-hover-node="donner"
-                href="https://github.com/PiMaV/DONNER" target="_blank" rel="noopener noreferrer"
-                aria-label="Open DONNER on GitHub">
+              <div class="eco-node eco-node--photo eco-node--stack eco-node--lg eco-accent-donner" data-node="donner"
+                tabindex="0">
                 <div class="eco-shot eco-shot--donner">
                   <img src="assets/screenshots/512_px/DONNER_Brain_Screenshot.png" alt="DONNER exploring a volumetric brain scan">
                 </div>
@@ -270,23 +275,30 @@
                     <div class="eco-copy">
                       <strong>DONNER</strong>
                       <span class="eco-role-line">Explore 3D / XR</span>
+                      <span class="eco-launch-row">
+                        <a class="eco-launch" href="https://donner.mess.engineering/" target="_blank" rel="noopener noreferrer">Open in browser</a>
+                        <a class="eco-launch eco-launch--muted" href="https://github.com/PiMaV/DONNER" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      </span>
                     </div>
                   </div>
                 </div>
                 <span class="eco-tip" role="tooltip">Immersive exploration of N-dimensional volumes, events, and XR views — also straight from raw data.</span>
-              </a>
+              </div>
             </div>
           </div>
 
           <div class="eco-sidecars eco-group eco-place eco-pos-sidecars" data-node="sidecars" tabindex="0"
-            style="--x: 83.5%; --y: 3%; --w: 15%;"
+            style="--x: 84%; --y: 3%; --w: 14.5%;"
             aria-label="Sidecars — Event camera Streamer">
             <div class="eco-group-head">
               <strong>Sidecars</strong>
+              <span class="eco-path-tag eco-path-tag--converted">Converted path</span>
               <span>When the data needs a converter</span>
             </div>
             <div class="eco-group-body">
-              <div class="eco-node eco-node--photo eco-node--stack eco-node--md" data-hover-node="sidecars">
+              <a class="eco-node eco-node--photo eco-node--stack eco-node--md" data-hover-node="sidecars"
+                href="https://github.com/PiMaV/event-reader" target="_blank" rel="noopener noreferrer"
+                aria-label="Open Event camera Streamer (event-reader) on GitHub">
                 <div class="eco-shot eco-shot--evt">
                   <img src="assets/screenshots/512_px/EVT_Reader_Screenshot.png" alt="Event camera Streamer converting camera raw to a viewer stream">
                 </div>
@@ -295,13 +307,13 @@
                     <strong>Event camera Streamer</strong>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
 
         <div class="eco-foot">
-          <p class="eco-desc">Modular data ecosystem: two strong viewers, optional curated WOLKE route, and sidecars when the data needs them.</p>
+          <p class="eco-desc">Three ways into the viewers: <strong class="eco-path-word eco-path-word--direct">Direct</strong> from the ocean, optional <strong class="eco-path-word eco-path-word--curated">Curated</strong> (DAMPF → KEIM → WOLKE), or <strong class="eco-path-word eco-path-word--converted">Converted</strong> via a sidecar when the format needs it.</p>
           <div class="tag-row">
             <span class="tag">Scientific Imaging</span>
             <span class="tag">Dataset Exploration</span>
@@ -324,6 +336,8 @@
         <a href="https://github.com/PiMaV/WETTER" target="_blank" rel="noopener noreferrer">GitHub</a>
         <span aria-hidden="true"> · </span>
         <a href="https://mess.engineering" target="_blank" rel="noopener noreferrer">M.E.S.S.</a>
+        <span aria-hidden="true"> · </span>
+        <a href="docs/BLITZ_WOLKE_DPG25V2_Compact.pdf" target="_blank" rel="noopener noreferrer">DPG 2025 talk (PDF)</a>
       </span>
     </div>
   </footer>
