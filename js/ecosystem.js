@@ -2,9 +2,10 @@
  * WETTER ecosystem diagram: data-driven SVG edges (always on).
  *
  * Layout contract (desktop ≥821px):
- * - Blocks are absolutely placed with --x/--y/--w % on the stage (edit in index.html).
- * - Ocean docks rise under each target’s horizontal center.
- * - Edges: thick base + traveling dash pulse (direction without arrowheads).
+ * - Stage is a CSS grid: Viewers → Curated | Direct | Sidecars → Ocean.
+ * - Edges are straight vertical hops, centered on the cards (not group frames).
+ * - Direct is one Ocean→Viewers hop in the gap between BLITZ and DONNER.
+ * - Edges: quiet pulse (direction without arrowheads).
  * - Below 821px the stage is a normal flow stack; edges are not drawn.
  */
 (function () {
@@ -17,14 +18,13 @@
 
   /** @type {{ id: string, from: string, to: string, group: "direct" | "wolke" | "sidecar" }[]} */
   const EDGES = [
-    { id: "ocean-curated", from: "raw-data-ocean", to: "curated", group: "wolke" },
-    { id: "ocean-donner", from: "raw-data-ocean", to: "donner", group: "direct" },
-    { id: "ocean-blitz", from: "raw-data-ocean", to: "blitz", group: "direct" },
-    { id: "ocean-sidecars", from: "raw-data-ocean", to: "sidecars", group: "sidecar" },
-    { id: "dampf-keim", from: "dampf", to: "keim", group: "wolke" },
+    { id: "ocean-curated", from: "raw-data-ocean", to: "wolke", group: "direct" },
+    { id: "ocean-sidecars", from: "raw-data-ocean", to: "evt", group: "direct" },
+    { id: "ocean-direct", from: "raw-data-ocean", to: "viewers", group: "direct" },
+    { id: "dampf-wolke", from: "dampf", to: "wolke", group: "wolke" },
     { id: "keim-wolke", from: "keim", to: "wolke", group: "wolke" },
-    { id: "wolke-viewers", from: "wolke", to: "viewers", group: "wolke" },
-    { id: "sidecars-viewers", from: "sidecars", to: "viewers", group: "sidecar" },
+    { id: "wolke-blitz", from: "wolke", to: "blitz", group: "wolke" },
+    { id: "evt-donner", from: "evt", to: "donner", group: "sidecar" },
   ];
 
   /** Soft emphasis only — never dims the rest. */
@@ -34,6 +34,8 @@
     keim: "wolke",
     wolke: "wolke",
     sidecars: "sidecar",
+    evt: "sidecar",
+    direct: "direct",
   };
 
   function nodeEl(id) {
@@ -45,71 +47,81 @@
     return { x: clientX - sr.left, y: clientY - sr.top };
   }
 
-  /** Ocean dock: rise under the target's horizontal center (clamped to ocean). */
-  function oceanDock(oceanEl, targetEl) {
-    const o = oceanEl.getBoundingClientRect();
-    const t = targetEl.getBoundingClientRect();
-    const pad = 12;
-    const x = Math.min(
-      o.right - pad,
-      Math.max(o.left + pad, t.left + t.width / 2)
-    );
-    return stagePoint(x, o.top);
+  function localX(clientX) {
+    return stagePoint(clientX, 0).x;
   }
 
-  function sideAnchor(el, toward) {
-    const r = el.getBoundingClientRect();
-    const cx = r.left + r.width / 2;
-    const cy = r.top + r.height / 2;
-    if (!toward) return stagePoint(cx, cy);
-
-    const tx = toward.left + toward.width / 2;
-    const ty = toward.top + toward.height / 2;
-    const dx = tx - cx;
-    const dy = ty - cy;
-
-    if (Math.abs(dx) > Math.abs(dy)) {
-      return stagePoint(dx > 0 ? r.right : r.left, cy);
-    }
-    return stagePoint(cx, dy > 0 ? r.bottom : r.top);
+  function localY(clientY) {
+    return stagePoint(0, clientY).y;
   }
 
-  function bottomCenter(el) {
-    const r = el.getBoundingClientRect();
-    return stagePoint(r.left + r.width / 2, r.bottom);
+  function box(el) {
+    return el.getBoundingClientRect();
   }
 
-  /** Prefer readable routes: vertical straight, side links shallow S-curves. */
-  function curvePath(x1, y1, x2, y2) {
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    if (Math.abs(dx) < 14) {
-      return `M ${x1} ${y1} L ${x2} ${y2}`;
-    }
-    if (Math.abs(dx) >= Math.abs(dy) * 1.15) {
-      const mx = x1 + dx * 0.5;
-      return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
-    }
-    const cx1 = x1 + dx * 0.08;
-    const cy1 = y1 + dy * 0.42;
-    const cx2 = x2 - dx * 0.08;
-    const cy2 = y2 - dy * 0.42;
-    return `M ${x1} ${y1} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`;
+  /** Horizontal center of a card. */
+  function centerX(el) {
+    const r = box(el);
+    return localX(r.left + r.width / 2);
   }
 
-  function endpoints(edge, fromEl, toEl) {
-    if (edge.from === "raw-data-ocean") {
-      return {
-        a: oceanDock(fromEl, toEl),
-        b: bottomCenter(toEl),
-      };
+  function topY(el) {
+    return localY(box(el).top);
+  }
+
+  function bottomY(el) {
+    return localY(box(el).bottom);
+  }
+
+  function verticalPath(x, y1, y2) {
+    return `M ${x} ${y1} L ${x} ${y2}`;
+  }
+
+  function endpoints(edge) {
+    const ocean = nodeEl("raw-data-ocean");
+    const blitz = nodeEl("blitz");
+    const donner = nodeEl("donner");
+    const wolke = nodeEl("wolke");
+    const dampf = nodeEl("dampf");
+    const keim = nodeEl("keim");
+    const evt = nodeEl("evt");
+
+    if (edge.id === "ocean-direct" && blitz && donner && ocean) {
+      const x = (localX(box(blitz).right) + localX(box(donner).left)) / 2;
+      return { x, y1: topY(ocean), y2: bottomY(blitz) };
     }
-    const toRect = toEl.getBoundingClientRect();
-    const fromRect = fromEl.getBoundingClientRect();
-    return {
-      a: sideAnchor(fromEl, toRect),
-      b: sideAnchor(toEl, fromRect),
-    };
+
+    if (edge.id === "ocean-curated" && ocean && wolke) {
+      const x = centerX(wolke);
+      return { x, y1: topY(ocean), y2: bottomY(wolke) };
+    }
+
+    if (edge.id === "ocean-sidecars" && ocean && evt) {
+      const x = centerX(evt);
+      return { x, y1: topY(ocean), y2: bottomY(evt) };
+    }
+
+    if (edge.id === "dampf-wolke" && dampf && wolke) {
+      const x = centerX(dampf);
+      return { x, y1: topY(dampf), y2: bottomY(wolke) };
+    }
+
+    if (edge.id === "keim-wolke" && keim && wolke) {
+      const x = centerX(keim);
+      return { x, y1: topY(keim), y2: bottomY(wolke) };
+    }
+
+    if (edge.id === "wolke-blitz" && wolke && blitz) {
+      const x = centerX(wolke);
+      return { x, y1: topY(wolke), y2: bottomY(blitz) };
+    }
+
+    if (edge.id === "evt-donner" && evt && donner) {
+      const x = centerX(evt);
+      return { x, y1: topY(evt), y2: bottomY(donner) };
+    }
+
+    return null;
   }
 
   function clearEdges() {
@@ -155,12 +167,9 @@
     );
 
     for (const edge of EDGES) {
-      const fromEl = nodeEl(edge.from);
-      const toEl = nodeEl(edge.to);
-      if (!fromEl || !toEl) continue;
-
-      const { a, b } = endpoints(edge, fromEl, toEl);
-      const d = curvePath(a.x, a.y, b.x, b.y);
+      const ends = endpoints(edge);
+      if (!ends) continue;
+      const d = verticalPath(ends.x, ends.y1, ends.y2);
       upsertPath(existing, edge.id, "base", edge.group, d);
       upsertPath(existing, edge.id, "flow", edge.group, d);
     }
@@ -168,16 +177,24 @@
     for (const stale of existing.values()) stale.remove();
   }
 
-  function clearEmphasis() {
-    stage.classList.remove("is-emphasize-wolke", "is-emphasize-sidecar");
-  }
-
   function applyEmphasis(nodeId) {
     const group = EMPHASIZE[nodeId];
     clearEmphasis();
     if (!group) return;
-    stage.classList.add(
-      group === "wolke" ? "is-emphasize-wolke" : "is-emphasize-sidecar"
+    const cls =
+      group === "wolke"
+        ? "is-emphasize-wolke"
+        : group === "sidecar"
+          ? "is-emphasize-sidecar"
+          : "is-emphasize-direct";
+    stage.classList.add(cls);
+  }
+
+  function clearEmphasis() {
+    stage.classList.remove(
+      "is-emphasize-wolke",
+      "is-emphasize-sidecar",
+      "is-emphasize-direct"
     );
   }
 
@@ -199,27 +216,30 @@
   });
 
   /** Tap/focus tooltips on touch devices (hover alone is unreliable). */
-  stage.querySelectorAll(".eco-node").forEach((node) => {
-    const tip = node.querySelector(":scope > .eco-tip");
+  function bindTipHost(host) {
+    const tip = host.querySelector(":scope > .eco-tip");
     if (!tip) return;
 
-    node.addEventListener("click", (event) => {
+    host.addEventListener("click", (event) => {
       if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
       if (event.target instanceof Element && event.target.closest("a")) return;
-      const open = node.classList.contains("is-tip-open");
-      stage.querySelectorAll(".eco-node.is-tip-open").forEach((n) => {
+      const open = host.classList.contains("is-tip-open");
+      stage.querySelectorAll(".is-tip-open").forEach((n) => {
         n.classList.remove("is-tip-open");
       });
       if (!open) {
-        node.classList.add("is-tip-open");
+        host.classList.add("is-tip-open");
       }
     });
-  });
+  }
+
+  stage.querySelectorAll(".eco-node").forEach(bindTipHost);
+  stage.querySelectorAll(".eco-ocean-tile").forEach(bindTipHost);
 
   document.addEventListener("pointerdown", (event) => {
     if (!(event.target instanceof Element)) return;
-    if (event.target.closest(".eco-node.is-tip-open")) return;
-    stage.querySelectorAll(".eco-node.is-tip-open").forEach((n) => {
+    if (event.target.closest(".is-tip-open")) return;
+    stage.querySelectorAll(".is-tip-open").forEach((n) => {
       n.classList.remove("is-tip-open");
     });
   });

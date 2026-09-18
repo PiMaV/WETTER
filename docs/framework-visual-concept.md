@@ -6,7 +6,7 @@ The live landing page combines three layers:
 
 1. **AI illustration** for atmosphere and visual identity (full-page backdrop).
 2. **Real GUI screenshots** and example data tiles for credibility (HTML cards / mosaic).
-3. **Deterministic edges** for information architecture: SVG paths drawn from a small JS edge list — arrows, path colors, and **Direct · Curated · Converted** labels.
+3. **Deterministic edges** for information architecture: SVG paths drawn from a small JS edge list — path colors and **Direct · Curated · Converted** labels on group heads.
 
 Core message:
 
@@ -22,11 +22,12 @@ Core message:
 - Three paths into the viewers: **Direct**, **Curated** (`Raw → DAMPF → KEIM → WOLKE`), **Converted** (sidecars).
 - **DONNER** and **BLITZ** are the primary applications and can consume raw data directly.
 - **WOLKE** can feed both DONNER and BLITZ.
-- Sidecars (Event camera Streamer today) convert specialized formats/streams into analysis-ready data for both viewers.
+- Sidecars (Event camera Streamer, DGM mosaic, HIKMICRO, DICOM) convert specialized formats into analysis-ready data for both viewers.
 - DONNER and BLITZ are visually dominant; WOLKE secondary; DAMPF/KEIM/sidecars supporting.
 - Atmosphere artwork contains **no** baked-in arrows; flow is drawn on top.
-- Desktop uses absolute percent placement; tablet/phone use a separate flow layout (viewers first). Edges are desktop-only; path legend remains on all widths.
-- Edges stay always visible (dashed pump + markers). No exclusive hover dimming of the rest of the graph.
+- Desktop uses a CSS grid with clear horizontal bands (viewers / routes / ocean) and quiet pulse edges; tablet/phone use a separate flow layout (viewers first). Edges are desktop-only.
+- Edges stay always visible (thick stroke + traveling dash pulse, no arrowheads). No exclusive hover dimming of the rest of the graph.
+- **Two-hop edge colors:** Ocean→* hops are white (`direct`). Cyan only inside the curated chain and Curated→Viewers; amber only Sidecars→Viewers.
 
 ---
 
@@ -47,6 +48,8 @@ Positioning:
 
 Visitor lead (landing hero):
 
+> **Images aren't just pixels—they are structured data.**
+>
 > Analyze scientific images and data in **2D**, or explore them in **3D / XR**.
 
 ---
@@ -107,17 +110,18 @@ DONNER  BLITZ
 assets/
 ├── neo-ocean-ohne-seitenwellen.png   # page backdrop
 ├── example_images/512_px/            # ocean mosaic
-├── screenshots/512_px/               # tool cards
+├── screenshots/conv/                 # tool cards (landing)
 └── icons/                            # brand marks
 ```
 
 ### Path styling
 
-- **Direct** — neutral/white, slightly stronger stroke
-- **Curated** — cyan (aligned with curated group border)
-- **Converted** — amber (aligned with sidecar group border)
+- **Ocean hops (all)** — white / `direct` (raw distribution)
+- **Curated interior + Curated→Viewers** — cyan (`wolke`)
+- **Sidecars→Viewers** — amber (`sidecar`)
 - Thick strokes with a traveling dash pulse for direction (no arrowheads; disabled under `prefers-reduced-motion`)
-- Path names on group heads (same colors as edges); no floating center legend
+- Path names on group heads; Raw Data Ocean tiles carry short data-type tooltips
+- Border hierarchy: viewers group strongest; curated/sidecar groups medium; ocean quieter dashed
 
 ### Responsive
 

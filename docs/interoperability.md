@@ -9,7 +9,7 @@ to talk to every other tool).
 | Role | Examples | How they exchange data |
 |------|----------|------------------------|
 | **Pipeline stage** | DAMPF → KEIM → WOLKE | SQLite + files on disk |
-| **Hub / producer** | WOLKE, EVT sidecar, converters, later FUNKE | Server side of the Viewer Contract |
+| **Hub / producer** | WOLKE, EVT, DGM, HIKMICRO, DICOM sidecars, later FUNKE | Server side of the Viewer Contract |
 | **Viewer** | BLITZ, DONNER | Client side of the Viewer Contract |
 
 ## Dogma

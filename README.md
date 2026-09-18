@@ -17,12 +17,12 @@
 Raw Data Ocean ──Direct──────────────→ BLITZ / DONNER
        │
        ├── Curated: DAMPF → KEIM → WOLKE ──→ BLITZ / DONNER
-       └── Converted: sidecars (e.g. Event camera Streamer) ──→ BLITZ / DONNER
+       └── Converted: sidecars (Event / DGM / HIKMICRO / DICOM) ──→ BLITZ / DONNER
 ```
 
 - **Direct** — drag-and-drop (or open) raw scientific images and arrays in a viewer.
 - **Curated** — build a browsable SQL image database, then filter into the viewers.
-- **Converted** — when a format needs a sidecar (Event camera Streamer today).
+- **Converted** — when a format needs a sidecar.
 
 Live viewers and hubs share one **hub-and-spoke** interchange — see
 [`docs/interoperability.md`](docs/interoperability.md) and the
@@ -42,16 +42,16 @@ LLMs / agents: [`docs/llm-brief.md`](docs/llm-brief.md).
 | **KEIM** | Index & enrich — statistics and knowledge extraction | [PiMaV/KEIM](https://github.com/PiMaV/KEIM) |
 | **WOLKE** | Filter & select — web layer over the WETTER DB | [PiMaV/WOLKE](https://github.com/PiMaV/WOLKE) |
 | **Event camera Streamer** | Sidecar: EVT3 `.raw` → Viewer Contract stream | [PiMaV/event-reader](https://github.com/PiMaV/event-reader) |
+| **DGM mosaic** | Sidecar: GeoTIFF tiles → mosaic stream | [PiMaV/dgm-mosaic](https://github.com/PiMaV/dgm-mosaic) |
+| **HIKMICRO reader** | Sidecar: radiometric JPEG / CSV → °C | [PiMaV/hikmicro-reader](https://github.com/PiMaV/hikmicro-reader) |
+| **DICOM reader** | Sidecar: uncompressed series → stack | [PiMaV/dicom-reader](https://github.com/PiMaV/dicom-reader) |
 
 ## Shared resources (suite)
 
-Tool names stay uppercase (`BLITZ`, …). Shared resource **folders** stay
-lowercase locally; GitHub repo names carry the `WETTER-` prefix so they stay
-unambiguous under PiMaV:
+Tool names stay uppercase (`BLITZ`, …). Sample data stays local:
 
 | Local folder | GitHub repo (planned) | Role |
 |--------------|----------------------|------|
-| `converters/` | `PiMaV/WETTER-converters` | Format bridges → `.npy` |
 | `datasets/` | `PiMaV/WETTER-datasets` | Sample / reference datasets |
 
 ---

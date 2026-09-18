@@ -11,29 +11,33 @@ Live site: [wetter.mess.engineering](https://wetter.mess.engineering) via **GitH
 ## Product story (visitor)
 
 - **Core:** **BLITZ** (2D analyze) and **DONNER** (3D/XR explore) are the viewers.
+- Hero manifesto: *Images aren't just pixels—they are structured data.*
 - **Three paths into the viewers:**
   - **Direct** — raw data → viewers
   - **Curated** — DAMPF → KEIM → WOLKE → viewers
-  - **Converted** — sidecars (Event camera Streamer / [event-reader](https://github.com/PiMaV/event-reader)) → viewers
-- Primary CTAs: DONNER browser demo (`https://donner.mess.engineering/`), BLITZ download (GitHub Releases).
+  - **Converted** — sidecars (Event camera Streamer, DGM mosaic, HIKMICRO, DICOM) → viewers
+- Starts are on the viewer cards (Download / Open in browser + GitHub). No duplicate primary CTAs in the hero.
 
 ## Landing diagram contract
 
 | Layer | Implementation |
 |-------|----------------|
 | Atmosphere | Full-page `.page-bg` image; internal **B** toggles `body.is-bg-off` (no UI hint) |
-| Truth | Real tool screenshots + Raw Data Ocean mosaic in HTML |
+| Truth | Real tool screenshots + Raw Data Ocean mosaic in HTML (tiles have short data-type tips) |
 | Logic | SVG edges drawn by [`js/ecosystem.js`](../js/ecosystem.js) from a small edge list |
 
-- Desktop (≥821px): absolute `%` placement (`--x/--y/--w` on `.eco-place` in `index.html`). Edges always on: thick base + traveling dash pulse (no arrowheads), path colors (direct / curated cyan / converted amber). Path names on group heads. No exclusive hover dimming; soft emphasis only on curated/sidecar families.
-- Tablet / phone: normal flow; order Viewers → optional routes → Ocean; SVG edges off. Ocean mosaic 4-col (tablet) / 2-col (phone). Tooltips: tap toggles `.is-tip-open` when hover is coarse.
+- Desktop (≥821px): compact CSS grid — **Viewers** on top; mid-row **Curated | Direct | Sidecars** (narrow Direct); Raw Data Ocean below. Row gap ~100px. Curated: WOLKE full-width on top, DAMPF | KEIM below. Sidecars: Event camera Streamer + DGM mosaic. Direct text on a translucent pad. **Edges:** straight vertical lines **centered on the cards** (WOLKE / Event camera Streamer). Direct hop sits in the gap between BLITZ and DONNER. Screenshots from `assets/screenshots/conv/`.
+- **Edge colors (two-hop):** Ocean→card hops are `direct` (white). Cyan (`wolke`) on DAMPF/KEIM→WOLKE→BLITZ. Amber (`sidecar`) on Event camera Streamer→DONNER. Path names on group heads.
+- Hero manifesto: *Images aren't just pixels—they are structured data.* Starts on viewer cards; no duplicate primary CTAs in the hero.
+- No exclusive hover dimming; soft emphasis only on curated/sidecar families.
+- Tablet / phone: normal flow; order Viewers → Curated | Direct | Sidecars → Ocean; SVG edges off. Ocean bands stack; tooltips tap-toggle `.is-tip-open` when hover is coarse.
 - Brand names stay uppercase: **WETTER**, **WOLKE**, **DAMPF**, **KEIM**, **BLITZ**, **DONNER**.
 
 ## Do / don’t
 
 **Do:** edit HTML cards, CSS layout, and the edge list in `ecosystem.js`; keep README and this brief aligned with the three-path story.
 
-**Don’t:** reintroduce a mandatory linear pipeline as the landing headline; commit tool code or large datasets here; build an Inkscape “SVG master” for all card content (superseded — see [`framework-visual-concept.md`](framework-visual-concept.md)); invent translated brand aliases.
+**Don’t:** reintroduce a mandatory linear pipeline as the landing headline; put primary app CTAs back in the hero when cards already expose them; commit tool code or large datasets here; build an Inkscape “SVG master” for all card content (superseded — see [`framework-visual-concept.md`](framework-visual-concept.md)); invent translated brand aliases; mix FUNKE backlog into landing work.
 
 ## Key paths
 
@@ -41,7 +45,7 @@ Live site: [wetter.mess.engineering](https://wetter.mess.engineering) via **GitH
 |------|------|
 | `index.html` | Hero, ecosystem stage, footer |
 | `css/style.css` | Layout, path colors, responsive breakpoints |
-| `js/ecosystem.js` | Edge geometry, markers, desktop-only draw, B-key, tip tap |
+| `js/ecosystem.js` | Edge geometry, desktop-only draw, B-key, tip tap |
 | `docs/interoperability.md` | Hub-and-spoke / Viewer Contract dogma |
 | `docs/framework-visual-concept.md` | Visual concept (updated for HTML/CSS implementation) |
 | `CHANGELOG.md` | Keep a Changelog |
