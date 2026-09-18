@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Sidecar cards on the Converted path: Event camera Streamer and DGM mosaic.
+- Hover/tap tooltips on WOLKE, DAMPF, KEIM, Event camera Streamer, and DGM mosaic (click still opens GitHub).
 - Interactive ecosystem diagram on the landing page (HTML nodes + SVG edges): BLITZ/DONNER primary, WOLKE route, DAMPF/KEIM, sidecars.
 - Always-on data-flow edges with thick directional pulse (no arrowheads), path names on group heads (**Direct · Curated · Converted**).
 - Short data-type tooltips on Raw Data Ocean tiles (hover / tap).

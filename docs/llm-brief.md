@@ -17,6 +17,7 @@ Live site: [wetter.mess.engineering](https://wetter.mess.engineering) via **GitH
   - **Curated** — DAMPF → KEIM → WOLKE → viewers
   - **Converted** — sidecars (Event camera Streamer, DGM mosaic, HIKMICRO, DICOM) → viewers
 - Starts are on the viewer cards (Download / Open in browser + GitHub). No duplicate primary CTAs in the hero.
+- Mid-row tool cards (WOLKE, DAMPF, KEIM, Event camera Streamer, DGM mosaic) are whole-card GitHub links with hover/tap tips that say so. No extra GitHub buttons on those cards.
 
 ## Landing diagram contract
 

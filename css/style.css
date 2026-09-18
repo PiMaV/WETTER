@@ -639,12 +639,29 @@ a.eco-node:hover,
 .eco-node--photo {
   padding: 0;
   gap: 0;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.eco-stack,
+.eco-sidecars {
+  overflow: visible;
+  isolation: isolate;
+}
+
+.eco-stack .eco-node:hover,
+.eco-stack .eco-node:focus-visible,
+.eco-sidecars .eco-node:hover,
+.eco-sidecars .eco-node:focus-visible {
+  z-index: 6;
 }
 
 .eco-node--photo .eco-shot {
   border: 0;
-  border-radius: 0;
+  border-radius: inherit;
+}
+
+.eco-node--photo .eco-caption {
+  border-radius: inherit;
 }
 
 .eco-node--stack {
@@ -817,6 +834,32 @@ a.eco-node:hover,
 
 .eco-accent-donner > .eco-tip {
   border-color: rgba(139, 124, 255, 0.7);
+}
+
+.eco-accent-wolke > .eco-tip {
+  border-color: rgba(0, 255, 242, 0.55);
+}
+
+.eco-accent-dampf > .eco-tip {
+  border-color: rgba(0, 255, 242, 0.55);
+}
+
+.eco-accent-keim > .eco-tip {
+  border-color: rgba(156, 204, 101, 0.7);
+}
+
+.eco-stack .eco-tip,
+.eco-sidecars .eco-tip {
+  width: max(100%, 14rem);
+  max-width: min(22rem, 72vw);
+  font-size: 0.86rem;
+  padding: 10px 12px;
+}
+
+.eco-stack .eco-node--sm > .eco-tip,
+.eco-sidecars .eco-node--plain > .eco-tip {
+  top: calc(100% + 8px);
+  bottom: auto;
 }
 
 .eco-node--lg > .eco-tip {
