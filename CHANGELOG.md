@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Hover/tap tooltips on WOLKE, DAMPF, KEIM, Event camera Streamer, and DGM mosaic (click still opens GitHub).
+- Hover/tap tooltips on WOLKE, DAMPF, KEIM, Event camera Streamer, and DGM mosaic (GitHub via caption button).
 - Interactive ecosystem diagram on the landing page (HTML nodes + SVG edges): BLITZ/DONNER primary, WOLKE route, DAMPF/KEIM, sidecars.
 - Always-on data-flow edges with thick directional pulse (no arrowheads), path names on group heads (**Direct · Curated · Converted**).
 - Short data-type tooltips on Raw Data Ocean tiles (hover / tap).
@@ -21,6 +21,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Mid-row tools are no longer whole-card GitHub links: card/tap shows the tip; an explicit **GitHub** button in the caption navigates (aligned with BLITZ/DONNER). Tips open above the card with raised stacking so they are not covered by the next band on mobile.
+- Fixed a CSS brace error that accidentally applied the tablet layout (no edges, tight gaps, large ocean tiles) on desktop.
+- DGM mosaic sidecar card uses the converted screenshot from `assets/screenshots/conv/DGM_mosaic.png` (same photo-card pattern as Event camera Streamer).
 - Landing hero: acronym under **WETTER**, then manifesto (*Images aren't just pixels…*), then benefit lead; starts on viewer cards; DPG PDF in the footer.
 - Desktop ecosystem: CSS grid with clearer band spacing — viewers on top; Curated | Direct | Sidecars mid-row; Raw Data Ocean below.
 - Tool screenshots load from `assets/screenshots/conv/`.

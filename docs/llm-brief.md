@@ -17,7 +17,7 @@ Live site: [wetter.mess.engineering](https://wetter.mess.engineering) via **GitH
   - **Curated** — DAMPF → KEIM → WOLKE → viewers
   - **Converted** — sidecars (Event camera Streamer, DGM mosaic, HIKMICRO, DICOM) → viewers
 - Starts are on the viewer cards (Download / Open in browser + GitHub). No duplicate primary CTAs in the hero.
-- Mid-row tool cards (WOLKE, DAMPF, KEIM, Event camera Streamer, DGM mosaic) are whole-card GitHub links with hover/tap tips that say so. No extra GitHub buttons on those cards.
+- Mid-row tool cards (WOLKE, DAMPF, KEIM, Event camera Streamer, DGM mosaic) are containers with hover/tap tips; **GitHub** is an explicit caption button (same pattern as the viewers). Not whole-card links.
 
 ## Landing diagram contract
 
@@ -31,7 +31,7 @@ Live site: [wetter.mess.engineering](https://wetter.mess.engineering) via **GitH
 - **Edge colors (two-hop):** Ocean→card hops are `direct` (white). Cyan (`wolke`) on DAMPF/KEIM→WOLKE→BLITZ. Amber (`sidecar`) on Event camera Streamer→DONNER. Path names on group heads.
 - Hero manifesto: *Images aren't just pixels—they are structured data.* Starts on viewer cards; no duplicate primary CTAs in the hero.
 - No exclusive hover dimming; soft emphasis only on curated/sidecar families.
-- Tablet / phone: normal flow; order Viewers → Curated | Direct | Sidecars → Ocean; SVG edges off. Ocean bands stack; tooltips tap-toggle `.is-tip-open` when hover is coarse.
+- Tablet / phone: normal flow; order Viewers → Curated | Direct | Sidecars → Ocean; SVG edges off. Ocean bands stack; tooltips tap-toggle `.is-tip-open` when hover is coarse (card tap opens tip; `a.eco-btn` still navigates). Tips open **above** the card; open place gets raised `z-index` so tips are not covered by the next band.
 - Brand names stay uppercase: **WETTER**, **WOLKE**, **DAMPF**, **KEIM**, **BLITZ**, **DONNER**.
 
 ## Do / don’t

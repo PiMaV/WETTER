@@ -563,7 +563,7 @@ body:not(.is-bg-off) .eco-direct .eco-group-head {
 
 .eco-node {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -572,6 +572,7 @@ body:not(.is-bg-off) .eco-direct .eco-group-head {
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(11, 15, 20, 0.42);
   color: inherit;
+  overflow: visible;
   transition:
     border-color 0.2s ease,
     background 0.2s ease,
@@ -636,15 +637,34 @@ a.eco-node:hover,
   object-position: 50% 6%;
 }
 
+.eco-shot--dgm img {
+  object-position: 50% 22%;
+}
+
 .eco-node--photo {
   padding: 0;
   gap: 0;
   overflow: visible;
 }
 
+.eco-node.is-tip-open,
+.eco-ocean-tile.is-tip-open {
+  z-index: 40;
+}
+
+.eco-place:has(.is-tip-open) {
+  z-index: 50;
+}
+
+.eco-stack,
+.eco-sidecars,
+.eco-viewers,
+.eco-group-body {
+  overflow: visible;
+}
+
 .eco-stack,
 .eco-sidecars {
-  overflow: visible;
   isolation: isolate;
 }
 
@@ -653,6 +673,11 @@ a.eco-node:hover,
 .eco-sidecars .eco-node:hover,
 .eco-sidecars .eco-node:focus-visible {
   z-index: 6;
+}
+
+.eco-stack .eco-node.is-tip-open,
+.eco-sidecars .eco-node.is-tip-open {
+  z-index: 40;
 }
 
 .eco-node--photo .eco-shot {
@@ -732,6 +757,26 @@ a.eco-node:hover,
   margin-top: 8px;
 }
 
+.eco-caption .eco-btn,
+.eco-launch-row {
+  pointer-events: auto;
+}
+
+.eco-stack .eco-launch-row,
+.eco-sidecars .eco-launch-row {
+  margin-top: 6px;
+  gap: 6px;
+}
+
+.eco-stack .eco-btn,
+.eco-sidecars .eco-btn {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  border-radius: 6px;
+}
+
 .eco-btn {
   display: inline-flex;
   align-items: center;
@@ -791,18 +836,19 @@ a.eco-node:hover,
   position: absolute;
   left: 50%;
   bottom: calc(100% + 10px);
+  top: auto;
   z-index: 20;
   width: max(100%, 22rem);
   max-width: 28rem;
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  background: #121821;
+  background: #0e141c;
   color: #f4f7fb;
   font-size: 0.95rem;
   line-height: 1.4;
   font-weight: 450;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -826,6 +872,7 @@ a.eco-node:hover,
 .eco-ocean-tile.is-tip-open > .eco-tip {
   opacity: 1;
   visibility: visible;
+  z-index: 60;
 }
 
 .eco-accent-blitz > .eco-tip {
@@ -856,15 +903,12 @@ a.eco-node:hover,
   padding: 10px 12px;
 }
 
-.eco-stack .eco-node--sm > .eco-tip,
-.eco-sidecars .eco-node--plain > .eco-tip {
-  top: calc(100% + 8px);
-  bottom: auto;
-}
-
+/* Keep mid-row tips above the card so they don’t collide with the next band. */
+.eco-stack .eco-node > .eco-tip,
+.eco-sidecars .eco-node > .eco-tip,
 .eco-node--lg > .eco-tip {
-  top: calc(100% + 10px);
-  bottom: auto;
+  bottom: calc(100% + 8px);
+  top: auto;
 }
 
 .eco-node--plain {
@@ -1315,6 +1359,23 @@ body:not(.is-bg-off) .footer {
   .footer-box {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .eco-node > .eco-tip,
+  .eco-ocean-tile > .eco-tip {
+    bottom: calc(100% + 8px);
+    top: auto;
+    width: min(100%, 22rem);
+    max-width: calc(100vw - 32px);
+  }
+
+  .eco-place:has(.is-tip-open) {
+    z-index: 80;
+  }
+
+  .eco-node.is-tip-open > .eco-tip,
+  .eco-ocean-tile.is-tip-open > .eco-tip {
+    z-index: 81;
   }
 
   .hero {

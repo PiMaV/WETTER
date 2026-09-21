@@ -222,7 +222,9 @@
 
     host.addEventListener("click", (event) => {
       if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-      if (event.target instanceof Element && event.target.closest("a")) return;
+      // Explicit GitHub / Download buttons navigate; card tap toggles the tip.
+      if (event.target instanceof Element && event.target.closest("a.eco-btn")) return;
+      event.preventDefault();
       const open = host.classList.contains("is-tip-open");
       stage.querySelectorAll(".is-tip-open").forEach((n) => {
         n.classList.remove("is-tip-open");
