@@ -832,6 +832,71 @@ a.eco-node:hover,
   color: #fff;
 }
 
+.eco-accent-wolke .eco-btn--primary {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.eco-accent-wolke .eco-btn--primary:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.eco-accent-wolke .eco-btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.eco-accent-dampf .eco-btn--primary {
+  border-color: rgba(0, 255, 242, 0.65);
+  background: rgba(0, 255, 242, 0.22);
+  color: #f4f7fb;
+}
+
+.eco-accent-dampf .eco-btn--primary:hover {
+  background: rgba(0, 255, 242, 0.34);
+}
+
+.eco-accent-dampf .eco-btn--ghost:hover {
+  border-color: rgba(0, 255, 242, 0.55);
+  color: #fff;
+}
+
+.eco-accent-keim .eco-btn--primary {
+  border-color: rgba(156, 204, 101, 0.65);
+  background: rgba(156, 204, 101, 0.24);
+  color: #f4f7fb;
+}
+
+.eco-accent-keim .eco-btn--primary:hover {
+  background: rgba(156, 204, 101, 0.38);
+}
+
+.eco-accent-keim .eco-btn--ghost:hover {
+  border-color: rgba(156, 204, 101, 0.55);
+  color: #fff;
+}
+
+.eco-sidecars .eco-btn--primary {
+  border-color: rgba(255, 180, 100, 0.7);
+  background: rgba(255, 180, 100, 0.28);
+  color: #f4f7fb;
+}
+
+.eco-sidecars .eco-btn--primary:hover {
+  background: rgba(255, 180, 100, 0.42);
+}
+
+.eco-sidecars .eco-btn--ghost:hover {
+  border-color: rgba(255, 180, 100, 0.55);
+  color: #fff;
+}
+
+.eco-stack .eco-node--sm .eco-btn {
+  min-width: 0;
+  padding: 4px 8px;
+  font-size: 0.68rem;
+}
+
 .eco-tip {
   position: absolute;
   left: 50%;

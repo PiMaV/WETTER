@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Curated (WOLKE, DAMPF, KEIM) and Sidecar (Event camera Streamer, DGM mosaic) cards now lead with **Download** → `/releases/latest`, with **GitHub** as the smaller second button (same pattern as BLITZ).
 - Mid-row tools are no longer whole-card GitHub links: card/tap shows the tip; an explicit **GitHub** button in the caption navigates (aligned with BLITZ/DONNER). Tips open above the card with raised stacking so they are not covered by the next band on mobile.
 - Fixed a CSS brace error that accidentally applied the tablet layout (no edges, tight gaps, large ocean tiles) on desktop.
 - DGM mosaic sidecar card uses the converted screenshot from `assets/screenshots/conv/DGM_mosaic.png` (same photo-card pattern as Event camera Streamer).
